@@ -1,0 +1,165 @@
+---
+title: "数学公式示例"
+date: 2024-05-07
+mathjax: true
+---
+
+# 数学公式渲染示例
+
+## 行内公式
+
+这是行内公式：$E = mc^2$，还有另一个：$\sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+
+## 独立公式
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+更复杂的积分：
+
+$$
+I = \int_0^\infty \frac{\sin x}{x} dx = \frac{\pi}{2}
+$$
+
+## 矩阵示例
+
+$$
+\begin{pmatrix}
+1 & 2 \\
+3 & 4
+\end{pmatrix}
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+=
+\begin{pmatrix}
+a + c & b + d \\
+3a + 4c & 3b + 4d
+\end{pmatrix}
+$$
+
+## 复杂数学公式
+
+### 欧拉公式
+
+$$
+e^{i\theta} = \cos\theta + i\sin\theta
+$$
+
+当 $\theta = \pi$ 时：
+
+$$
+e^{i\pi} + 1 = 0
+$$
+
+### 泰勒展开
+
+$$
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+$$
+
+### 二项式定理
+
+$$
+(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k
+$$
+
+## 求和与乘积
+
+$$
+\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}
+$$
+
+$$
+\prod_{k=1}^{n} k = n!
+$$
+
+## 分数和根式
+
+$$
+\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}
+$$
+
+$$
+\frac{d}{dx} \left( \int_{a}^{x} f(t) \, dt \right) = f(x)
+$$
+
+## 特殊符号
+
+希腊字母：$\alpha, \beta, \gamma, \delta, \epsilon, \zeta, \eta, \theta, \iota, \kappa, \lambda, \mu, \nu, \xi, \omicron, \pi, \rho, \sigma, \tau, \upsilon, \phi, \chi, \psi, \omega$
+
+运算符：$\pm, \mp, \times, \div, \otimes, \oplus, \odot, \leq, \geq, \neq, \approx, \equiv, \propto$
+
+## 物理公式
+
+### 牛顿第二定律
+
+$$
+F = ma
+$$
+
+### 万有引力定律
+
+$$
+F = G \frac{m_1 m_2}{r^2}
+$$
+
+### 麦克斯韦方程组
+
+$$
+\nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}
+$$
+
+$$
+\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}
+$$
+
+## 统计公式
+
+### 正态分布概率密度函数
+
+$$
+f(x) = \\frac{1}{\\sqrt{2\\pi}\\sigma} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}
+$$
+
+### 标准差
+
+$$
+\\sigma = \\sqrt{\\frac{1}{N} \\sum_{i=1}^{N} (x_i - \\mu)^2}
+$$
+
+## 微积分公式
+
+### 链式法则
+
+$$
+\\frac{dy}{dx} = \\frac{dy}{du} \\cdot \\frac{du}{dx}
+$$
+
+### 洛必达法则
+
+$$
+\\lim_{x \\to c} \\frac{f(x)}{g(x)} = \\lim_{x \\to c} \\frac{f'(x)}{g'(x)}
+$$
+
+## 线性代数公式
+
+### 矩阵乘法
+
+$$
+(AB)_{ij} = \\sum_{k=1}^{n} A_{ik} B_{kj}
+$$
+
+### 行列式
+
+$$
+\\det(A) = \\sum_{\\sigma \\in S_n} \\operatorname{sgn}(\\sigma) \\prod_{i=1}^{n} a_{i,\\sigma(i)}
+$$
+
+## 结论
+
+以上展示了Jekyll中数学公式渲染的各种示例。通过正确配置MathJax，我们可以在网页中漂亮地显示复杂的数学表达式。
+
+这个实现方案完全兼容GitHub Pages，并且可以在本地构建和测试。
