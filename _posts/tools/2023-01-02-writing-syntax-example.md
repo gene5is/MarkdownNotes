@@ -388,10 +388,3 @@ Praesent maximus aliquam sapien. Sed vel neque in dolor pulvinar auctor. Maecena
 
 [^footnote]: 脚注源
 [^fn-nth-2]: 第二个脚注源
-
-
-## jupyter notebook
-
-{::nomarkdown}
-{% jupyter_notebook "hello.ipynb" %}
-{:/nomarkdown}
