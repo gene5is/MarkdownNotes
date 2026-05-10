@@ -2,7 +2,7 @@
 title: 写作语法示例
 author: paso
 date: 2023-01-02 21:19:00 +0800
-categories: [博客, 示例]
+categories: [工具, 示例]
 tags: [排版]
 math: true
 mermaid: true

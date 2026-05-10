@@ -1,7 +1,7 @@
 ---
 title: 撰写新帖子
 date: 2019-08-08 14:10:00 +0800
-categories: [博客, 教程]
+categories: [工具, 教程]
 tags: [写作]
 render_with_liquid: false
 ---
