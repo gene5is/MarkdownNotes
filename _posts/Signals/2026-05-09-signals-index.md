@@ -95,14 +95,14 @@ math: true
     - 滤波器的性能指标
     - 滤波器的选择
 
-11. [反馈系统](/posts/Signals/includes/2026-05-09-feedback/)
+11. [反馈系统]({% post_url 2026-05-09-feedback %})
     - 反馈系统的基本概念
     - 反馈系统的稳定性分析
     - 反馈系统的性能指标
     - 反馈系统的校正
     - 数字反馈系统
 
-12. [系统的状态变量](/posts/Signals/includes/2026-05-09-state-variables/)
+12. [系统的状态变量]({% post_url 2026-05-09-state-variables %})
     - 状态变量的基本概念
     - 连续时间系统的状态方程
     - 离散时间系统的状态方程
