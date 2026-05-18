@@ -528,9 +528,6 @@ $$
 |F(\omega)| = E\tau \cdot | Sa(\frac{\omega\tau}{2})|
 $$
 
-
-
-
 相位谱
 
 $$
@@ -540,7 +537,6 @@ $$
 \pi \quad \frac{2(2n+1)\pi}{\tau}<|\omega|<\frac{4(n+1)\pi}{\tau}
 \end{cases}
 $$
-
 
 #### 钟形脉冲信号的傅里叶变换
 
@@ -688,7 +684,7 @@ f(t) = \frac{E}{2}[1+cos(\frac{\pi t}{\tau})] \quad (0\leq |t| \leq \tau)
 $$
 
 
-```math
+$$
 \begin{aligned}
 F(\omega) 
 &= \int_{-\infty}^{\infty}f(t)e^{-j\omega t}dt \\
@@ -709,7 +705,7 @@ F(\omega)
 &= E\sin(\omega\tau) [ \frac{(\pi^2-\omega^2\tau^2) + \omega^2\tau^2}{\omega(\pi^2-\omega^2\tau^2)} ] \\
 &= \frac{E\pi^2\sin(\omega\tau)}{\omega(\pi^2-\omega^2\tau^2)}
 \end{aligned}
-```
+$$
 
 
 定义在 $[-\tau, \tau]$ 区间上的升余弦脉冲信号为：
