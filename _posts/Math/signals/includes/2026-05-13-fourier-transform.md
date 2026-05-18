@@ -1,386 +1,13 @@
+
 ---
-title: "信号"
-date: 2026-05-09 00:00:00 +0800  # 必须加这一行！
+title: "信号与系统 - 傅里叶变换"
+date: 2026-05-13 00:00:00 +0800
 categories: [数学, 信号]
-tags: [信号]
+tags: [信号, 傅里叶变换]
 author: wjj
-toc: true               
-math: true                
+toc: true
+math: true
 ---
-
-# 数学基础
-
-## 三角函数基本公式
-
-$$
-\sin(\alpha+\beta) = \sin\alpha\cos\beta+\cos\alpha\sin\beta
-$$
-
-$$
-\sin(\alpha-\beta) = \sin\alpha\cos\beta-\cos\alpha\sin\beta
-$$
-
-$$
-\cos(\alpha+\beta) = \cos\alpha\cos\beta-\sin\alpha\sin\beta
-$$
-
-$$
-\cos(\alpha-\beta) = \cos\alpha\cos\beta+\sin\alpha\sin\beta
-$$
-
-
-## 三角函数积化和差
-
-$$
-\sin\alpha\cos\beta = \frac{1}{2}[\sin(\alpha+\beta)+\sin(\alpha-\beta)]
-$$
-
-$$
-\cos\alpha\sin\beta = \frac{1}{2}[\sin(\alpha+\beta)-\sin(\alpha-\beta)]
-$$
-
-$$
-\cos\alpha\cos\beta = \frac{1}{2}[\cos(\alpha+\beta)+\cos(\alpha-\beta)]
-$$
-
-$$
-\sin\alpha\sin\beta = \frac{1}{2}[\cos(\alpha-\beta)-\cos(\alpha+\beta)]
-$$
-
-
-
-
-## 三角函数和差化积
-
-$$
-\sin\alpha+ \sin \beta = 2\sin\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}
-$$
-
-
-$$
-\sin\alpha - \sin \beta = 2\cos\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}
-$$
-
-
-$$
-\cos\alpha + \cos \beta = 2\cos\frac{\alpha+\beta}{2}\cos\frac{\alpha-\beta}{2}
-$$
-
-$$
-\cos\alpha - \cos \beta = 2\sin\frac{\alpha+\beta}{2}\sin\frac{\alpha-\beta}{2}
-$$
-
-
-
-
-## 欧拉公式
-
-$$
-e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)
-$$
-
-$$
-e^{-j\omega t} = \cos(\omega t) - j\sin(\omega t)
-$$
-
-$$
-\cos(\omega t) = \frac{1}{2}(e^{j\omega t} + e^{-j\omega t})
-$$
-
-$$
-\sin(\omega t) = \frac{1}{2j} (e^{j\omega t} - e^{-j\omega t})
-$$
-
-## 正交函数集
-
-*定义*: 在区间 $(t_1,t_2)$ 上的函数集 $\{g_1(t), g_2(t), \ldots, g_n(t)\}$ ，当所有函数在区间 $(t_1, t_2)$ 上满足下列条件时
-
-$$
-\int_{t_1}^{t_2}g_i(t)g_j(t)dt = 
-\begin{cases}  
-0 & (i\neq j) \\
-k_i \neq 0 & (i=j)
-\end{cases}
-$$
-
-则称此函数集为区间 $(t_1,t_2)$ 上的正交函数集
-
-$\cos t$ , $\cos 2t$ $\ldots$ $\cos nt$ (n为正整数) 在 $(0,2\pi)$ 上是正交函数集
-
-$$
-\int_0^{2\pi}cos(nt)cos(mt)dt = \frac{1}{2}\int_0^{2\pi}cos[(n+m)t]dt - \frac{1}{2}\int_9^{2\pi}cos[(n-m)t]dt
-$$
-
-$n \neq m$ 时
-$n = m$ 时
-
-## 完备正交函数集
-### 三角函数集
-
-$\{ 1, \sin n \omega t, \cos n \omega t \}$ 其中 $T = \frac{2\pi}{\omega}$
-
-
-# 信号分类
-
-### 指数信号
-
-$$
-f(t) = Ke^{at}
-$$
-
-
-### 正弦信号
-
-$$
-f(t) = K\sin(\omega t +\theta)
-$$
-
-周期 $T$ 与角频率 $\omega$ 和频率 $f$ 满足：
-
-$$
-T = \frac{2\pi}{\omega} = \frac{1}{f}
-$$
-
-### 复指数信号
-
-$$
-f(t) = Ke^{st}= Ke^{\sigma+j\omega} = Ke^{\sigma t}\cos(\omega t) + jKe^{\sigma t}\sin(\omega t)
-$$
-
-### 抽样信号
-
-$$
-Sa(t) = \frac{\sin t}{t}
-$$
-
-$$
-sinc(t) = \frac{\sin(\pi t)}{\pi t}
-$$
-
-$$
-\int_{0}^\infty Sa(t) dt = \frac{\pi}{2}
-$$
-
-$$
-\int_{-\infty}^\infty Sa(t) dt = \pi
-$$
-
-### 钟形信号
-
-$$
-f(t) = Ee^{-(\frac{t}{\tau})^2}
-$$
-
-
-### 单位斜变信号
-
-$$
-f(t) = \begin{cases} 
-0 \quad (t<0) \\ 
-t \quad (t\geq 0)
- \end{cases}
-$$
-
-$$
-f(t - t_0) =
-\begin{cases}
-0 & \text{if } t < t_0 \\ 
-t - t_0 & \text{if } t \geq t_0
-\end{cases}
-$$
-
-### 单位阶跃信号
-
-$$
-u(t) = 
-\begin{cases} 
-0 \quad (t<0) \\
-1 \quad (t\geq 0)
- \end{cases}
-$$
-
-#### 矩形脉冲
-
-$$
-R_T(t) = u(t) - u(t-T)
-$$
-
-$$
-G_T(t) = u(t+\frac{T}{2}) - u(t-\frac{T}{2})
-$$
-
-
-
-#### 符号函数
-
-$$
-sgn(t) = 2u(t) - 1
-$$
-
-### 冲激信号
-
-$$
-\delta(t) = \lim_{t\to 0} \frac{1}{\tau}[u(t+\frac{\tau}{2})-u(t-\frac{\tau}{2})]
-$$
-
-狄拉克的定义：
-
-$$
-\begin{cases}
-\int_{-\infty}^{\infty}\delta(t)dt =1\\
-\delta(t) = 0 \quad (t\neq 0)
-\end{cases}
-$$
-
-#### 用三角形脉冲表示冲激函数
-
-$$
-\delta(t) =  \lim_{\tau  \to 0}\{\frac{1}{\tau}(1-\frac{\vert t \vert}{\tau})[u(t+\tau) - u(t-\tau)] \}
-$$
-
-
-#### 用双边指数脉冲表示冲激函数
-
-$$
-\delta(t) = \lim_{\tau  \to 0}(\frac{1}{2\tau}e^{-\frac{\vert t\vert}{\tau}})
-$$
-
-
-#### 用钟形脉冲表示冲激函数
-
-$$
-\delta(t) = \lim_{\tau \to 0}(\frac{1}{\tau}e^{-\pi (\frac{t}{\tau})^2})
-$$
-
-#### 用抽样信号表示冲激函数
-
-$$
-\delta(t) = \lim_{k \to \infty} [ \frac{k}{\pi}Sa(kt)]
-$$
-
-
-#### 冲激函数的性质
-
-$$
-u(t) = \int_{-\infty}^{t}\delta(\tau)d\tau = 
-\begin{cases}
- 1 \quad(t>0)\\
- 0 \quad(t\leq 0)
-\end{cases}
-$$
-
-$$
-\frac{d}{dt}u(t) = \delta(t)
-$$
-
-$$
-\delta(t) = \delta(-t)
-$$
-
-$$
-\int_{-\infty}^{\infty}\delta(t)f(t)dt = \int_{-\infty}^{\infty}\delta(t)f(0)dt = f(0)\int_{-\infty}^{\infty}\delta(t)dt = f(0)
-$$
-
-$$
-\int_{-\infty}^{\infty}\delta(t-t_0)f(t)dt = \int_{-\infty}^{\infty}\delta(t-t_0)f(0)dt = f(0)\int_{-\infty}^{\infty}\delta(t-t_0)dt = f(t_0)
-$$
-
-
-### 冲激偶信号
-
-#### 冲激偶信号的性质
-
-$$
-\int_{-\infty}^{\infty} \delta'(t) f(t)dt = f(t)\delta(t)  \vert _{-\infty}^{\infty} - \int_{-\infty}^{\infty}f'(t)\delta(t)dt =-f'(0)
-$$
-
-$$
-\int_{-\infty}^{\infty}\delta'(t)dt = 0
-$$
-
-
-# 信号分解
-
-## 直流分量和交流分量
-原信号 $f(t)$ 可分解为直流分量 $f_D$ 和交流分量 $f_A(t)$
-
-
-$$
-\begin{align*}
-\text{信号平均功率}\ P &= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f^2(t)  dt \\
-&= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} [f_D + f_A(t)]^2  dt \\
-&= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} [ f_D^2 + f_A^2(t) + 2f_D f_A(t) ]  dt \\
-&= f_D^2 + \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f_A^2(t)  dt
-\end{align*}
-$$
-
-
-## 偶分量和奇分量
-
-$$
-f_e(t) = f_e(-t)
-$$
-
-$$
-f_o(t) = -f_o(-t)
-$$
-
-$$
-f_e(t) = \frac{1}{2}[f(t)+f(-t)]
-$$
-
-$$
-f_o(t) =\frac{1}{2}[f(t)-f(-t)]
-$$
-
-## 脉冲分量
-
-$$
-f(t_0) = \int_{-\infty}^{\infty}f(t)\delta(t-t_0)dt = \int_{-\infty}^{\infty}f(t)\delta(t_0-t)dt
-$$
-
-
-## 实部分量和虚部分量
-
-
-$$
-f(t) = f_r(t) + jf_i(t)
-$$
-
-$$
-f^*(t) = f_r(t) - jf_i(t)
-$$
-
-$$
-f_r(t) = \frac{1}{2}[f(t)+f^*(t)]
-$$
-
-$$
-jf_i(t) = \frac{1}{2}[f(t)-f^*(t)]
-$$
-
-$$
-\vert f(t) \vert^2 = f(t)f^*(t) = f_r^2(t)+f_i^2(t)
-$$
-
-## 正交函数分量
-后续的傅里叶变换
-
-# 系统分类
-
-### 连续时间系统与离散时间系统
-
-### 即时系统（无记忆系统）与动态系统（记忆系统）
-
-### 线性系统与非线性系统
-
-### 时变系统与时不变系统
-
-### 因果系统与非因果系统
-
-### 集总参数系统与分布参数系统
-
-# 连续时间系统
 
 ## 连续时间系统的时域分析
 
@@ -447,14 +74,14 @@ $$
 三种形式的傅里叶级数中各个量之间的关系
 
 $$
-\begin{align*}
+\begin{aligned}
 &a_0 = c_0 = d_0 \\
 &c_n = d_n = \sqrt{a_n^2+b_n^2} \\
 &a_n = c_n\cos\varphi_n = d_n \sin \theta_n \\
 &b_n = -c_n\sin\varphi_n = d_n \cos\theta_n \\
 &tan\varphi_n = - \frac{b_n}{a_n} \\
 &tan\theta_n = \frac{a_n}{b_n} 
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -556,13 +183,13 @@ $$
 余弦分量
 
 $$
-\begin{align*}
+\begin{aligned}
 a_n &= \frac{2}{T}\int_0^T f(t)\cos(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t)\cos(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T [-f(t-\frac{T}{2})]\cos(n\omega t)dt \\
-&\overset{t-\frac{T}{2} = \tau}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega (\tau+\frac{T}{2}))d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega (\tau+\frac{T}{2}))d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[\cos(n\omega\tau)\cos(n\omega\frac{T}{2}) - \sin(n\omega\tau)\sin(n\omega\frac{T}{2})]d\tau \\
-&\overset{\omega T = 2\pi}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\cos(n\omega\tau) - 0\cdot\sin(n\omega\tau)]d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\cos(n\omega\tau) - 0\cdot\sin(n\omega\tau)]d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt - \frac{2}{T}(-1)^n\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega\tau)d\tau \\
 &= \frac{2}{T}[1 - (-1)^n]\int_0^{\frac{T}{2}} f(t)\cos(n\omega t)dt \\
 &=
@@ -570,19 +197,19 @@ a_n &= \frac{2}{T}\int_0^T f(t)\cos(n\omega t)dt \\
 0 \quad &(n为偶数) \\
 \frac{4}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt \quad &(n为奇数)
 \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 正弦分量
 
 $$
-\begin{align*}
+\begin{aligned}
 b_n &= \frac{2}{T}\int_0^T f(t)\sin(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t)\sin(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T [-f(t-\frac{T}{2})]\sin(n\omega t)dt \\
-&\overset{t-\frac{T}{2} = \tau}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega (\tau+\frac{T}{2}))d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega (\tau+\frac{T}{2}))d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[\sin(n\omega\tau)\cos(n\omega\frac{T}{2}) + \cos(n\omega\tau)\sin(n\omega\frac{T}{2})]d\tau \\
-&\overset{\omega T = 2\pi}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\sin(n\omega\tau) + 0\cdot\cos(n\omega\tau)]d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\sin(n\omega\tau) + 0\cdot\cos(n\omega\tau)]d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt - \frac{2}{T}(-1)^n\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega\tau)d\tau \\
 &= \frac{2}{T}[1 - (-1)^n]\int_0^{\frac{T}{2}} f(t)\sin(n\omega t)dt \\
 &=
@@ -590,7 +217,7 @@ b_n &= \frac{2}{T}\int_0^T f(t)\sin(n\omega t)dt \\
 0 \quad &(n为偶数) \\
 \frac{4}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt \quad &(n为奇数)
 \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -605,13 +232,13 @@ $$
 余弦分量
 
 $$
-\begin{align*}
+\begin{aligned}
 a_n &= \frac{2}{T}\int_0^T f(t)\cos(n\omega t)dt  \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t)\cos(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t-\frac{T}{2})\cos(n\omega t)dt \\
-&\overset{t-\frac{T}{2} = \tau}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega (\tau+\frac{T}{2}))d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega (\tau+\frac{T}{2}))d\tau \\
 &=  \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[\cos(n\omega\tau)\cos(n\omega\frac{T}{2}) - \sin(n\omega\tau)\sin(n\omega\frac{T}{2})]d\tau \\
-&\overset{\omega T = 2\pi}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\cos(n\omega\tau) - 0\cdot\sin(n\omega\tau)]d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\cos(n\omega\tau) - 0\cdot\sin(n\omega\tau)]d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\cos(n\omega t)dt + \frac{2}{T}(-1)^n\int_0^{\frac{T}{2}} f(\tau)\cos(n\omega\tau)d\tau \\
 &= \frac{2}{T}[1 + (-1)^n]\int_0^{\frac{T}{2}} f(t)\cos(n\omega t)dt \\
 &= 
@@ -619,19 +246,19 @@ a_n &= \frac{2}{T}\int_0^T f(t)\cos(n\omega t)dt  \\
 0 \quad &(n为奇数) \\
 \frac{4}{T}\int_0^{\frac{T}{2}}f(t)cos(n\omega t)dt \quad &(n为偶数)
 \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 正弦分量
 
 $$
-\begin{align*}
+\begin{aligned}
 b_n &= \frac{2}{T}\int_0^T f(t)\sin(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t)\sin(n\omega t)dt \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_{\frac{T}{2}}^T f(t-\frac{T}{2})\sin(n\omega t)dt \\
-&\overset{t-\frac{T}{2} = \tau}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega (\tau+\frac{T}{2}))d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega (\tau+\frac{T}{2}))d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[\sin(n\omega\tau)\cos(n\omega\frac{T}{2}) + \cos(n\omega\tau)\sin(n\omega\frac{T}{2})]d\tau \\
-&\overset{\omega T = 2\pi}{=} \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\sin(n\omega\tau) + 0\cdot\cos(n\omega\tau)]d\tau \\
+&= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}\int_0^{\frac{T}{2}} f(\tau)[(-1)^n\sin(n\omega\tau) + 0\cdot\cos(n\omega\tau)]d\tau \\
 &= \frac{2}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt + \frac{2}{T}(-1)^n\int_0^{\frac{T}{2}} f(\tau)\sin(n\omega\tau)d\tau \\
 &= \frac{2}{T}[1 + (-1)^n]\int_0^{\frac{T}{2}} f(t)\sin(n\omega t)dt \\
 &= 
@@ -639,7 +266,7 @@ b_n &= \frac{2}{T}\int_0^T f(t)\sin(n\omega t)dt \\
 0 \quad &(n为奇数) \\
 \frac{4}{T}\int_0^{\frac{T}{2}}f(t)\sin(n\omega t)dt \quad &(n为偶数)
 \end{cases}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -677,7 +304,7 @@ $$
 $F_n$与其他系数的关系
 
 $$
-\begin{align*}
+\begin{aligned}
 &F_0 = c_0 = d_0 = a_0 \\
 &F_n = |F_n|e^{j\varphi_n} = \frac{1}{2}(a_n - jb_n) \\
 &F_{-n} = |F_{-n}|e^{-j\varphi_n} = \frac{1}{2}(a_n+jb_n) \\
@@ -686,7 +313,7 @@ $$
 &F_n+F_{-n} = a_n   \\
 &j(F_n - F_{-n}) = b_n \\
 &c_n^2 = d_n^2 = a_n^2 + b_n^2 = 4F_nF_{-n}
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -736,10 +363,10 @@ F_n = \frac{1}{T}\int_{-\frac{\tau}{2}}^{\frac{\tau}{2}}Ee^{-jn\omega t}dt \\
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 f(t) &= \sum_{n=-\infty}^{\infty}F_n e^{jn\omega t} \\
  &= \frac{E\tau}{T} \sum_{n=-\infty}^{\infty}Sa(\frac{n\omega \tau}{2})e^{jn\omega t}
-\end{align*}
+\end{aligned}
 $$
 
 $$
@@ -795,21 +422,21 @@ $$
 傅里叶逆变换
 
 $$
-\begin{align*}
+\begin{aligned}
 f(t) 
 = \mathcal{F}^{-1}[F(\omega)] 
 = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega)e^{j\omega t}d\omega \\
-\end{align*}
+\end{aligned}
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 f(t)
 &= \frac{1}{2\pi}\int_{-\infty}^\infty F(\omega)e^{j\omega t}d\omega \\
 &= \frac{1}{2\pi}\int_{-\infty}^{\infty}|F(\omega)|e^{j[\omega t+\varphi(\omega)]}d\omega  \\
 &=\frac{1}{2\pi}\int_{-\infty}^{\infty} |F(\omega)| \cos(\omega t+\varphi(\omega) )d\omega + \frac{j}{2\pi}\int_{-\infty}^{\infty} |F(\omega)| \sin(\omega t+\varphi(\omega) )d\omega  \\
 &= \frac{1}{\pi}\int_{0}^{\infty} |F(\omega)| \cos(\omega t+\varphi(\omega) )d\omega	
-\end{align*}
+\end{aligned}
 $$
 
 
@@ -830,13 +457,13 @@ $$
 a为正实数
 
 $$
-\begin{align*}
+\begin{aligned}
 F(\omega) 
 &= \int_{-\infty}^{\infty}f(t)e^{-j\omega t}dt \\
 &= \int_0^\infty e^{-at}e^{-j\omega t}dt \\
 &= \int_0^\infty e^{-(a+j\omega)t}dt \\
 &= -\frac{e^{-(a+j\omega)t}}{a+j\omega}|_0^\infty = \frac{1}{a+j\omega} 
-\end{align*}
+\end{aligned}
 $$
 
 $$
@@ -855,7 +482,7 @@ $$
 
 
 $$
-\begin{align*}
+\begin{aligned}
 F(\omega) 
 &= \int_{-\infty}^\infty f(t)e^{-j\omega t}dt \\
 &=\int_{-\infty}^{\infty}e^{-a|t|}e^{-j\omega t}dt \\
@@ -864,7 +491,7 @@ F(\omega)
 &=\frac{1}{a-j\omega} + \frac{1}{a+j\omega} \\
 &= \frac{2a}{(a-j\omega)(a+j\omega)}  \\
 &= \frac{2a}{a^2+\omega^2}
-\end{align*}
+\end{aligned}
 $$
 
 $$
@@ -884,7 +511,7 @@ f(t) = E[u(t+\frac{\tau}{2})-u(t-\frac{\tau}{2})]
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 F(\omega) 
 &= \int_{-\infty}^{\infty}f(t)e^{-j\omega t}dt \\ 
 &= \int_{-\frac{\tau}{2}}^{\frac{\tau}{2}}Ee^{-j\omega t}dt \\
@@ -893,7 +520,7 @@ F(\omega)
 &= \frac{2E}{\omega}\sin(\frac{\omega\tau}{2}) \\
 &= E\tau [\frac{\sin(\frac{\omega \tau}{2})}{\frac{\omega \tau}{2}}]  \\
 &= E\tau \cdot Sa(\frac{\omega\tau}{2})
-\end{align*}
+\end{aligned}
 $$
 
 幅度谱
@@ -923,24 +550,24 @@ f(t) = Ee^{-(\frac{t}{\tau})^2} \quad (-\infty < t < +\infty)
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 F(\omega) 
 &= \int_{-\infty}^\infty f(t)e^{-jn\omega}dt  \\
 &= \int_{-\infty}^{\infty} Ee^{-(\frac{t}{\tau})^2}e^{-jn\omega}dt \\
 &= E\int_{-\infty}^{\infty}  e^{-(\frac{t}{\tau})^2}[\cos(\omega t)-j\sin(\omega t)]dt \\
 &= 2E\int_{0}^{\infty}  e^{-(\frac{t}{\tau})^2}\cos(\omega t)dt
-\end{align*}
+\end{aligned}
 $$
 
 $$
-\begin{align*}
+\begin{aligned}
 F(\omega) &= \int_{-\infty}^{\infty} f(t) e^{-j\omega t} \, dt \\
 &= \int_{-\infty}^{\infty} E e^{-(t/\tau)^2} e^{-j\omega t} \, dt \\
 &= E \int_{-\infty}^{\infty} e^{-(t/\tau)^2} \bigl[ \cos(\omega t) - j \sin(\omega t) \bigr] \, dt \\
 &= 2E \int_{0}^{\infty} e^{-(t/\tau)^2} \cos(\omega t) \, dt \quad \text{(被积函数偶部)} \\
 &= 2E \cdot \frac{\sqrt{\pi}\, \tau}{2} \, e^{-\omega^2 \tau^2 / 4} \\
 &= \sqrt{\pi}E \tau  \, e^{-(\omega \tau)^2 / 4}
-\end{align*}
+\end{aligned}
 $$
 
 ##### 高斯积分的推导
@@ -1682,12 +1309,12 @@ $$
 #### 帕萨瓦尔定理（功率P与傅里叶系数的关系）
 
 $$
-\begin{align*}
+\begin{aligned}
 P  
 &= \overline{f^2[(t)]} = \frac{1}{T}\int_{t_0}^{t_0+T}f^2(t)dt \\
 &= a_0^2 + \frac{1}{2}\sum_{n=1}^\infty(a_n^2+b_n^2) = c_0^2 + \frac{1}{2}\sum_{n=1}^{\infty}c_n^2 \\
 &= \sum_{n=-\infty}^\infty |F_n|^2
-\end{align*}
+\end{aligned}
 $$
 
 **命题**： $\int_{-\infty}^{\infty} |f(t)|^2 dt = \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(\omega)|^2 d\omega$
@@ -1712,18 +1339,9 @@ $$
 注意到内层方括号内的积分 $\int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt$ 刚好完全符合 $F(\omega)$ 的正变换定义，代入后得：
 
 $$
-\begin{align*}
+\begin{aligned}
 \int_{-\infty}^{\infty} |f(t)|^2 dt 
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F^*(\omega) \cdot F(\omega) d\omega \\
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(\omega)|^2 d\omega \quad \blacksquare
-\end{align*}
+\end{aligned}
 $$
-
-## 拉普拉斯变换 连续时间系统的s域分析
-
-# 离散时间系统
-## 离散时间系统的时域分析
-
-## z变换-离散时间系统的z域分析
-
-## 离散傅里叶变换以及其他离散正交变换
