@@ -60,7 +60,7 @@ $$f(t) = \mathcal{L}^{-1}\{F(s)\} = \frac{1}{2\pi j} \int_{\sigma - j\infty}^{\s
 
 $$F(s) = \int_{0}^{\infty} f(t) e^{-st} dt$$
 
-收敛域为 $\text{Re}\{s\} > \sigma_0$，其中 $\sigma_0$ 称为收敛坐标。
+收敛域为 $\text{Re}\{s\} > \sigma_0$， 其中 $\sigma_0$ 称为收敛坐标。
 
 **示例**：指数信号 $f(t) = e^{-at}u(t)$ 的收敛域
 
