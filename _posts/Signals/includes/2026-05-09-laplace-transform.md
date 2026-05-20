@@ -40,7 +40,7 @@ $$f(t) = \mathcal{L}^{-1}\{F(s)\} = \frac{1}{2\pi j} \int_{\sigma - j\infty}^{\s
 
 ### 单边拉普拉斯变换
 
-对于因果信号（$t < 0$ 时 $f(t) = 0$），常用单边拉普拉斯变换：
+对于因果信号（ $t < 0$ 时 $f(t) = 0$ ），常用单边拉普拉斯变换：
 
 $$F(s) = \mathcal{L}\{f(t)\} = \int_{0^-}^{\infty} f(t) e^{-st} dt$$
 
@@ -74,7 +74,7 @@ $$F(s) = \int_{-\infty}^{0} f(t) e^{-st} dt$$
 
 收敛域为 $\text{Re}\{s\} < \sigma_0$。
 
-**示例**：$-e^{-at}u(-t)$ 的收敛域
+**示例**： $-e^{-at}u(-t)$ 的收敛域
 
 $$F(s) = -\int_{-\infty}^{0} e^{-at} e^{-st} dt = -\int_{-\infty}^{0} e^{-(s+a)t} dt = \frac{1}{s+a}, \quad \text{Re}\{s\} < -a$$
 
@@ -84,7 +84,7 @@ $$F(s) = -\int_{-\infty}^{0} e^{-at} e^{-st} dt = -\int_{-\infty}^{0} e^{-(s+a)t
 
 $$\alpha < \text{Re}\{s\} < \beta$$
 
-**示例**：$f(t) = e^{-a|t|}$ 的收敛域
+**示例**： $f(t) = e^{-a|t|}$ 的收敛域
 
 $$F(s) = \frac{1}{s+a} + \frac{1}{s-a} = \frac{2s}{s^2 - a^2}, \quad -a < \text{Re}\{s\} < a$$
 
@@ -102,7 +102,7 @@ $$f(t) = \delta(t)$$
 
 $$\mathcal{L}\{\delta(t)\} = \int_{0}^{\infty} \delta(t) e^{-st} dt = 1, \quad \text{整个s平面}$$
 
-如果冲激出现在 $ t= t_0 (t_0>0)$ 时刻,
+如果冲激出现在 $t= t_0 (t_0>0)$ 时刻,
 
 $$
 \mathcal{L}[\delta(t-t_0)] = \int_0^\infty \delta(t-t_0)e^{-st_0}dt = e^{-st_0}
@@ -168,7 +168,7 @@ $$
 $$
 
 
-特别地，$\mathcal{L}\{t\} = \frac{1}{s^2}$，$\mathcal{L}\{t^2\} = \frac{2}{s^3}$
+特别地， $\mathcal{L}\{t\} = \frac{1}{s^2}$， $\mathcal{L}\{t^2\} = \frac{2}{s^3}$
 
 $$\mathcal{L}\{t^n u(t)\}= \frac{n!}{s^{n+1}}, \quad \text{Re}\{s\} > 0$$
 
@@ -188,11 +188,11 @@ $$\mathcal{L}\{\delta'(t)\} = s, \quad \text{整个s平面}$$
 
 ### 线性性质
 
-若 $\mathcal{L}\{f_1(t)\} = F_1(s)$，$\mathcal{L}\{f_2(t)\} = F_2(s)$，则：
+若 $\mathcal{L}\{f_1(t)\} = F_1(s)$ ， $\mathcal{L}\{f_2(t)\} = F_2(s)$ ，则：
 
 $$\mathcal{L}\{a f_1(t) + b f_2(t)\} = a F_1(s) + b F_2(s)$$
 
-**收敛域**：$F_1(s)$ 和 $F_2(s)$ 收敛域的交集（可能扩大）
+**收敛域**： $F_1(s)$ 和 $F_2(s)$ 收敛域的交集（可能扩大）
 
 ### 时移性质
 
@@ -268,7 +268,7 @@ $$f(0^+) = \lim_{s \to \infty} sF(s)$$
 
 $$f(\infty) = \lim_{s \to 0} sF(s)$$
 
-**使用条件**：$sF(s)$ 的收敛域包含 $s = 0$（即 $s = 0$ 在收敛域内或在边界上）
+**使用条件**： $sF(s)$ 的收敛域包含 $s = 0$（即 $s = 0$ 在收敛域内或在边界上）
 
 ## 拉普拉斯逆变换
 
@@ -278,7 +278,7 @@ $$f(\infty) = \lim_{s \to 0} sF(s)$$
 
 #### 单重实数极点
 
-若 $F(s) = \frac{N(s)}{D(s)}$，$s = p_i$ 为单重极点，则：
+若 $F(s) = \frac{N(s)}{D(s)}$， $s = p_i$ 为单重极点，则：
 
 $$F(s) = \sum_{i=1}^{n} \frac{A_i}{s - p_i}$$
 
@@ -334,15 +334,15 @@ $$F(\omega) = F(s)\Big|_{s = j\omega} = F(j\omega)$$
 
 | 信号类型 | 拉普拉斯变换 | 收敛域 | 傅里叶变换 |
 |----------|--------------|--------|------------|
-| 右边信号 | $F(s)$ | $\text{Re}\{s\} > \sigma_0$ | $F(j\omega)$（$\sigma_0 < 0$） |
-| 左边信号 | $F(s)$ | $\text{Re}\{s\} < \sigma_0$ | $F(j\omega)$（$\sigma_0 > 0$） |
+| 右边信号 | $F(s)$ | $\text{Re}\{s\} > \sigma_0$ | $F(j\omega)$（ $\sigma_0 < 0$ ） |
+| 左边信号 | $F(s)$ | $\text{Re}\{s\} < \sigma_0$ | $F(j\omega)$（ $\sigma_0 > 0$ ） |
 | 双边信号 | $F(s)$ | $\alpha < \text{Re}\{s\} < \beta$ | 部分存在 |
 
 ### 常用关系
 
 | 拉普拉斯变换 | 傅里叶变换 |
 |-------------|------------|
-| $\frac{1}{s+a}$ | $\frac{1}{j\omega + a}$（$a > 0$） |
+| $\frac{1}{s+a}$ | $\frac{1}{j\omega + a}$（ $a > 0$ ） |
 | $\frac{1}{s}$ | $\pi\delta(\omega) + \frac{1}{j\omega}$ |
 | $\frac{1}{s^2}$ | $\pi\delta'(\omega) - \frac{1}{\omega^2}$ |
 
@@ -385,12 +385,12 @@ $$H(s) = \frac{Y(s)}{X(s)} = \mathcal{L}\{h(t)\}$$
 
 #### 系统稳定性
 
-- **因果系统稳定**：所有极点都在左半平面（$\text{Re}\{p_i\} < 0$）
+- **因果系统稳定**：所有极点都在左半平面（ $\text{Re}\{p_i\} < 0$ ）
 - **BIBO 稳定**：收敛域包含 $j\omega$ 轴
 
 #### 系统因果性
 
-- **线性时不变系统因果** $\Longleftrightarrow$ 收敛域为右边平面（$\text{Re}\{s\} > \sigma_0$）
+- **线性时不变系统因果** $\Longleftrightarrow$ 收敛域为右边平面（ $\text{Re}\{s\} > \sigma_0$ ）
 
 ### 电路分析
 
