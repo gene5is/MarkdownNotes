@@ -916,9 +916,52 @@ $$
 
 #### 余弦信号的傅里叶变换
 
+$$
+\cos(\omega_0 t) = \frac{1}{2} (e^{j\omega_0 t} + e^{-j\omega_0 t})
+$$
 
+根据频移性质 $\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0)$
+
+$$
+\begin{aligned}
+\mathcal{F}\{\cos(\omega_0 t)\} &= \frac{1}{2} \mathcal{F}\{e^{j\omega_0 t}\} + \frac{1}{2} \mathcal{F}\{e^{-j\omega_0 t}\} \\
+&= \frac{1}{2} \cdot [2\pi \delta(\omega - \omega_0)] + \frac{1}{2} \cdot [2\pi \delta(\omega + \omega_0)] \\
+&= \pi [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]
+\end{aligned}
+$$
 
 #### 正弦信号的傅里叶变换
+
+$$
+\sin(\omega_0 t) = \frac{1}{2} (e^{j\omega_0 t} - e^{-j\omega_0 t})
+$$
+
+根据频移性质 $\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0)$
+
+$$
+\begin{aligned}
+\mathcal{F}\{\sin(\omega_0 t)\} &= \frac{1}{2j} \mathcal{F}\{e^{j\omega_0 t}\} - \frac{1}{2j} \mathcal{F}\{e^{-j\omega_0 t}\} \\
+&= \frac{\pi}{j} [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)] \\
+&= -j\pi [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)]
+\end{aligned}
+$$
+
+#### 一般周期函数的傅里叶变换
+
+$$
+f(t) = \sum_{n=-\infty}^{+\infty} F_n e^{j n \omega_0 t}
+$$
+
+$$
+\begin{aligned}
+\mathcal{F}\{f(t)\} &= \sum_{n=-\infty}^{+\infty} F_n \cdot \mathcal{F}\{e^{j n \omega_0 t}\} \\
+&= 2\pi \sum_{n=-\infty}^{+\infty} F_n \delta(\omega - n \omega_0)
+\end{aligned}
+$$
+
+
+#### 抽样信号的傅里叶变换
+
 
 ### 傅里叶变换的性质
 
@@ -1094,6 +1137,8 @@ $$
 
 ##### 时域卷积定理
 
+两个时间函数卷积的频谱等效于在频域中频谱相乘
+
 **命题**： $\mathcal{F}\{f(t) * g(t)\} = F(\omega) \cdot G(\omega)$
 
 **证明**：
@@ -1121,6 +1166,9 @@ $$
 $$
 
 ##### 频域卷积定理
+
+两个时间函数频谱的卷积等效于两函数的乘积
+
 **命题**： $\mathcal{F}\{f(t) \cdot g(t)\} = \frac{1}{2\pi} F(\omega) * G(\omega)$
 
 **证明**：
