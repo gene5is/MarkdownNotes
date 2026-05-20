@@ -102,6 +102,12 @@ $$f(t) = \delta(t)$$
 
 $$\mathcal{L}\{\delta(t)\} = \int_{0}^{\infty} \delta(t) e^{-st} dt = 1, \quad \text{整个s平面}$$
 
+如果冲激出现在 $ t= t_0 (t_0>0)$ 时刻,
+
+$$
+\mathcal{L}[\delta(t-t_0)] = \int_0^\infty \delta(t-t_0)e^{-st_0}dt = e^{-st_0}
+$$
+
 ### 指数信号
 
 $$f(t) = e^{-at}u(t)$$
@@ -114,11 +120,28 @@ $$f(t) = \sin(\omega t)u(t)$$
 
 $$\mathcal{L}\{\sin(\omega t)u(t)\} = \frac{\omega}{s^2 + \omega^2}, \quad \text{Re}\{s\} > 0$$
 
+
+$$
+f(t) = \sin(\omega t) = \frac{1}{2j}(e^{j\omega t}- e^{-j\omega t}) \\
+\mathcal{L}[e^{j\omega t}] = \frac{1}{s-j\omega} \\
+\mathcal{L}[e^{-j\omega t}] = \frac{1}{s+j\omega} \\
+\mathcal{L}[\sin(\omega t)] = \frac{1}{2j}(\frac{1}{s-j\omega}-\frac{1}{s+j\omega}) = \frac{\omega}{s^2+\omega^2}
+$$
+
+
 ### 余弦信号
 
 $$f(t) = \cos(\omega t)u(t)$$
 
 $$\mathcal{L}\{\cos(\omega t)u(t)\} = \frac{s}{s^2 + \omega^2}, \quad \text{Re}\{s\} > 0$$
+
+
+$$
+f(t) = \cos(\omega t) = \frac{1}{2j}(e^{j\omega t} + e^{-j\omega t}) \\
+\mathcal{L}[e^{j\omega t}] = \frac{1}{s-j\omega} \\
+\mathcal{L}[e^{-j\omega t}] = \frac{1}{s+j\omega} \\
+\mathcal{L}[\cos(\omega t)] = \frac{1}{2j}(\frac{1}{s-j\omega}+\frac{1}{s+j\omega}) = \frac{s}{s^2+\omega^2}
+$$
 
 ### 衰减正弦信号
 
@@ -136,9 +159,18 @@ $$\mathcal{L}\{e^{-at}\cos(\omega t)u(t)\} = \frac{s+a}{(s+a)^2 + \omega^2}, \qu
 
 $$f(t) = t^n u(t)$$
 
-$$\mathcal{L}\{t^n u(t)\} = \frac{n!}{s^{n+1}}, \quad \text{Re}\{s\} > 0$$
+$$\mathcal{L}\{t^n u(t)\}= \frac{n!}{s^{n+1}}, \quad \text{Re}\{s\} > 0$$
+
+$$\mathcal{L}\{t^n u(t)\} = \int_0^\infty t^n e^{-st}dt = -\frac{t^n e^{-st}}{s}|_0^\infty + \frac{n}{s}\int_0^\infty t^{n-1}e^{-st}dt = \frac{n}{s}\int_0^\infty t^{n-1}e^{-st}dt $$
+
+$$
+\mathcal{L}[t^n] = \frac{n}{s}\mathcal{L}[t^{n-1}]
+$$
+
 
 特别地，$\mathcal{L}\{t\} = \frac{1}{s^2}$，$\mathcal{L}\{t^2\} = \frac{2}{s^3}$
+
+$$\mathcal{L}\{t^n u(t)\}= \frac{n!}{s^{n+1}}, \quad \text{Re}\{s\} > 0$$
 
 ### 斜变信号
 
@@ -176,7 +208,7 @@ $$\mathcal{L}\{e^{s_0 t} f(t)\} = F(s - s_0)$$
 
 ### 尺度变换性质
 
-$$\mathcal{L}\{f(at)\} = \frac{1}{|a|} F\left(\frac{s}{a}\right), \quad a > 0$$
+$$\mathcal{L}\{f(at)\} = \frac{1}{|a|} F(\frac{s}{a}), \quad a > 0$$
 
 **收敛域**：按比例变化
 
@@ -184,11 +216,11 @@ $$\mathcal{L}\{f(at)\} = \frac{1}{|a|} F\left(\frac{s}{a}\right), \quad a > 0$$
 
 若 $\mathcal{L}\{f(t)\} = F(s)$，则：
 
-$$\mathcal{L}\left\{\frac{df(t)}{dt}\right\} = sF(s) - f(0^-)$$
+$$\mathcal{L}\{\frac{df(t)}{dt}\} = sF(s) - f(0^-)$$
 
 **一般形式**：
 
-$$\mathcal{L}\left\{\frac{d^n f(t)}{dt^n}\right\} = s^n F(s) - s^{n-1}f(0^-) - s^{n-2}f'(0^-) - \cdots - f^{(n-1)}(0^-)$$
+$$\mathcal{L}\{\frac{d^n f(t)}{dt^n}\} = s^n F(s) - s^{n-1}f(0^-) - s^{n-2}f'(0^-) - \cdots - f^{(n-1)}(0^-)$$
 
 **收敛域**：与 $F(s)$ 相同（可能添加无穷远点）
 
@@ -202,17 +234,17 @@ $$\mathcal{L}\{t^n f(t)\} = (-1)^n \frac{d^n F(s)}{ds^n}$$
 
 ### 时域积分性质
 
-$$\mathcal{L}\left\{\int_{-\infty}^{t} f(\tau) d\tau\right\} = \frac{F(s)}{s} + \frac{f^{-1}(0^-)}{s}$$
+$$\mathcal{L}\{\int_{-\infty}^{t} f(\tau) d\tau\} = \frac{F(s)}{s} + \frac{f^{-1}(0^-)}{s}$$
 
 其中 $f^{-1}(0^-) = \int_{-\infty}^{0^-} f(\tau) d\tau$
 
 **特例**（因果信号）：
 
-$$\mathcal{L}\left\{\int_{0}^{t} f(\tau) d\tau\right\} = \frac{F(s)}{s}$$
+$$\mathcal{L}\{\int_{0}^{t} f(\tau) d\tau\} = \frac{F(s)}{s}$$
 
 ### 复频域积分性质
 
-$$\mathcal{L}\left\{\frac{f(t)}{t}\right\} = \int_{s}^{\infty} F(\eta) d\eta$$
+$$\mathcal{L}\{\frac{f(t)}{t}\} = \int_{s}^{\infty} F(\eta) d\eta$$
 
 ### 卷积定理
 
@@ -385,12 +417,15 @@ $$H(s) = \frac{Y(s)}{X(s)} = \mathcal{L}\{h(t)\}$$
 | 3 | $e^{-at}$ | $\frac{1}{s+a}$ | $\text{Re}\{s\} > -a$ |
 | 4 | $\sin(\omega t)$ | $\frac{\omega}{s^2+\omega^2}$ | $\text{Re}\{s\} > 0$ |
 | 5 | $\cos(\omega t)$ | $\frac{s}{s^2+\omega^2}$ | $\text{Re}\{s\} > 0$ |
-| 6 | $e^{-at}\sin(\omega t)$ | $\frac{\omega}{(s+a)^2+\omega^2}$ | $\text{Re}\{s\} > -a$ |
-| 7 | $e^{-at}\cos(\omega t)$ | $\frac{s+a}{(s+a)^2+\omega^2}$ | $\text{Re}\{s\} > -a$ |
-| 8 | $t$ | $\frac{1}{s^2}$ | $\text{Re}\{s\} > 0$ |
-| 9 | $t^n$ | $\frac{n!}{s^{n+1}}$ | $\text{Re}\{s\} > 0$ |
-| 10 | $t e^{-at}$ | $\frac{1}{(s+a)^2}$ | $\text{Re}\{s\} > -a$ |
-| 11 | $\sinh(\omega t)$ | $\frac{\omega}{s^2-\omega^2}$ | $\text{Re}\{s\} > 0$ |
-| 12 | $\cosh(\omega t)$ | $\frac{s}{s^2-\omega^2}$ | $\text{Re}\{s\} > 0$ |
-| 13 | $f'(t)$ | $sF(s) - f(0^-)$ | — |
-| 14 | $\int_{-\infty}^{t} f(\tau)d\tau$ | $\frac{F(s)}{s} + \frac{f^{-1}(0^-)}{s}$ | — |
+| 6 | $t\sin(\omega t)$ | $\frac{2\omega s}{(s^2+\omega^2)^2}$ | $\text{Re}\{s\} > 0$ |
+| 7 | $t\cos(\omega t)$ | $\frac{s^2-\omega^2}{(s^2+\omega^2)^2}$ | $\text{Re}\{s\} > 0$ |
+| 8 | $e^{-at}\sin(\omega t)$ | $\frac{\omega}{(s+a)^2+\omega^2}$ | $\text{Re}\{s\} > -a$ |
+| 9 | $e^{-at}\cos(\omega t)$ | $\frac{s+a}{(s+a)^2+\omega^2}$ | $\text{Re}\{s\} > -a$ |
+| 10 | $t$ | $\frac{1}{s^2}$ | $\text{Re}\{s\} > 0$ |
+| 11 | $t^n$ | $\frac{n!}{s^{n+1}}$ | $\text{Re}\{s\} > 0$ |
+| 12 | $t e^{-at}$ | $\frac{1}{(s+a)^2}$ | $\text{Re}\{s\} > -a$ |
+| 13 | $t^n e^{-at}$ (n为正整数) | $\frac{n!}{(s+a)^{n+1}}$ | $\text{Re}\{s\} > -a$ |
+| 14 | $\sinh(\omega t)$ | $\frac{\omega}{s^2-\omega^2}$ | $\text{Re}\{s\} > 0$ |
+| 15 | $\cosh(\omega t)$ | $\frac{s}{s^2-\omega^2}$ | $\text{Re}\{s\} > 0$ |
+| 16 | $f'(t)$ | $sF(s) - f(0^-)$ | — |
+| 17 | $\int_{-\infty}^{t} f(\tau)d\tau$ | $\frac{F(s)}{s} + \frac{f^{-1}(0^-)}{s}$ | — |
