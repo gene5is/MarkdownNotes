@@ -18,7 +18,7 @@ math: true
 
 $$X(z) = \mathcal{Z}\{x[n]\} = \sum_{n=-\infty}^{\infty} x[n] z^{-n}$$
 
-其中 $z$ 是复变量，$z = re^{j\omega}$。
+其中 $z$ 是复变量， $z = re^{j\omega}$。
 
 ### 单边z变换
 
@@ -120,7 +120,7 @@ $$x[0] = \lim_{z \to \infty} X(z)$$
 
 $$x[\infty] = \lim_{z \to 1} (z-1) X(z)$$
 
-**条件**：$(z-1)X(z)$ 的极点都在单位圆内。
+**条件**： $(z-1)X(z)$ 的极点都在单位圆内。
 
 ## z逆变换
 
@@ -176,15 +176,21 @@ $$|p_k| < 1, \quad \forall k$$
 
 **定义**：
 
-$$H(e^{j\omega}) = H(z)\Big|_{z=e^{j\omega}} = |H(e^{j\omega})| e^{j\varphi(\omega)}$$
+$$
+H(e^{j\omega}) = H(z)\Big|_{z=e^{j\omega}} = |H(e^{j\omega})| e^{j\varphi(\omega)}
+$$
 
 **幅度响应**：
 
-$$|H(e^{j\omega})| = \left| \frac{\sum_{m=0}^{M} b_m e^{-j\omega m}}{\sum_{k=0}^{N} a_k e^{-j\omega k}} \right|$$
+$$
+|H(e^{j\omega})| = \left| \frac{\sum_{m=0}^{M} b_m e^{-j\omega m}}{\sum_{k=0}^{N} a_k e^{-j\omega k}} \right|
+$$
 
 **相位响应**：
 
-$$\varphi(\omega) = \arg\left( \frac{\sum_{m=0}^{M} b_m e^{-j\omega m}}{\sum_{k=0}^{N} a_k e^{-j\omega k}} \right)$$
+$$
+\varphi(\omega) = \arg\left( \frac{\sum_{m=0}^{M} b_m e^{-j\omega m}}{\sum_{k=0}^{N} a_k e^{-j\omega k}} \right)
+$$
 
 ### 系统的因果性
 
@@ -204,9 +210,9 @@ $$z = e^{sT}$$
 
 | s平面 | z平面 |
 |--------|--------|
-| 虚轴（$s = j\omega$） | 单位圆（$|z| = 1$） |
-| 左半平面（$\text{Re}\{s\} < 0$） | 单位圆内（$|z| < 1$） |
-| 右半平面（$\text{Re}\{s\} > 0$） | 单位圆外（$|z| > 1$） |
+| 虚轴（ $s = j\omega$ ） | 单位圆（ $\vert z\vert = 1$ ） |
+| 左半平面（ $\text{Re}\{s\} < 0$ ） | 单位圆内（ $\vert z \vert < 1$ ） |
+| 右半平面（ $\text{Re}\{s\} > 0$ ） | 单位圆外（ $\vert z\vert > 1$ ） |
 
 ### 频率映射
 
