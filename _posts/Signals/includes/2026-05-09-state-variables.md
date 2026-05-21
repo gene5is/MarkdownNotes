@@ -20,7 +20,15 @@ math: true
 
 **状态向量**：
 
-$$\mathbf{q}(t) = \begin{bmatrix} q_1(t) \\ q_2(t) \\ \vdots \\ q_n(t) \end{bmatrix}$$
+$$
+\mathbf{q}(t) = 
+\begin{bmatrix} 
+q_1(t) \\ 
+q_2(t) \\ 
+\vdots \\
+q_n(t) 
+\end{bmatrix}
+$$
 
 ### 状态方程的建立
 
@@ -51,10 +59,12 @@ $$\mathbf{y}[n] = \mathbf{C} \mathbf{q}[n] + \mathbf{D} \mathbf{x}[n]$$
 
 **示例**：RLC电路
 
-$$\begin{cases}
+$$
+\begin{cases}
 q_1 = i_L \\
 q_2 = v_C
-\end{cases}$$
+\end{cases}
+$$
 
 ## 连续时间系统的状态方程
 
@@ -91,13 +101,36 @@ $$H(s) = \frac{b_m s^m + b_{m-1} s^{m-1} + \cdots + b_0}{s^n + a_{n-1} s^{n-1} +
 
 **状态方程**：
 
-$$\mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \cdots & 1 \\ -a_0 & -a_1 & -a_2 & \cdots & -a_{n-1} \end{bmatrix}$$
+$$
+\mathbf{A} = 
+\begin{bmatrix} 
+0 & 1 & 0 & \cdots & 0 \\ 
+0 & 0 & 1 & \cdots & 0 \\ 
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+-a_0 & -a_1 & -a_2 & \cdots & -a_{n-1} 
+\end{bmatrix}
+$$
 
-$$\mathbf{B} = \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \\ 1 \end{bmatrix}$$
+$$
+\mathbf{B} = 
+\begin{bmatrix} 
+0 \\ 0 \\ \vdots \\ 0 \\ 1 
+\end{bmatrix}
+$$
 
 **直接形式II**：
 
-$$\mathbf{A} = \begin{bmatrix} 0 & 0 & \cdots & 0 & -a_0 \\ 1 & 0 & \cdots & 0 & -a_1 \\ 0 & 1 & \cdots & 0 & -a_2 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \cdots & 1 & -a_{n-1} \end{bmatrix}$$
+$$
+\mathbf{A} = 
+\begin{bmatrix} 
+0 & 0 & \cdots & 0 & -a_0 \\
+1 & 0 & \cdots & 0 & -a_1 \\
+0 & 1 & \cdots & 0 & -a_2 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \cdots & 1 & -a_{n-1} 
+\end{bmatrix}
+$$
 
 ### 由方框图建立状态方程
 
@@ -122,7 +155,23 @@ $$q_2[n] = y[n-1]$$
 
 **状态方程**：
 
-$$\begin{bmatrix} q_1[n+1] \\ q_2[n+1] \end{bmatrix} = \begin{bmatrix} -a_1 & -a_0 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} q_1[n] \\ q_2[n] \end{bmatrix} + \begin{bmatrix} b_1 & b_0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} x[n] \\ x[n-1] \end{bmatrix}$$
+$$
+\begin{bmatrix} 
+q_1[n+1] \\ q_2[n+1] 
+\end{bmatrix} = 
+\begin{bmatrix} 
+-a_1 & -a_0 \\ 1 & 0 
+\end{bmatrix} 
+\begin{bmatrix} 
+q_1[n] \\ q_2[n] 
+\end{bmatrix} + 
+\begin{bmatrix} 
+b_1 & b_0 \\ 0 & 0 
+\end{bmatrix} 
+\begin{bmatrix} 
+x[n] \\ x[n-1] 
+\end{bmatrix}
+$$
 
 ### 由z域传递函数建立状态方程
 
@@ -206,7 +255,15 @@ $$\mathbf{\Lambda} = \mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \begin{bmatrix} \la
 
 **约当块**：
 
-$$\mathbf{J}_k = \begin{bmatrix} \lambda & 1 & 0 & \cdots & 0 \\ 0 & \lambda & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \cdots & \lambda \end{bmatrix}$$
+$$
+\mathbf{J}_k = 
+\begin{bmatrix} 
+\lambda & 1 & 0 & \cdots & 0 \\
+0 & \lambda & 1 & \cdots & 0 \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & \lambda 
+\end{bmatrix}
+$$
 
 ## 系统的可控性与可观性
 
@@ -226,7 +283,15 @@ $$\mathbf{C}_c = \begin{bmatrix} \mathbf{B} & \mathbf{A}\mathbf{B} & \mathbf{A}^
 
 **可观性矩阵**：
 
-$$\mathbf{C}_o = \begin{bmatrix} \mathbf{C} \\ \mathbf{C}\mathbf{A} \\ \mathbf{C}\mathbf{A}^2 \\ \vdots \\ \mathbf{C}\mathbf{A}^{n-1} \end{bmatrix}$$
+$$
+\mathbf{C}_o = 
+\begin{bmatrix} \mathbf{C} \\
+\mathbf{C}\mathbf{A} \\
+\mathbf{C}\mathbf{A}^2 \\
+\vdots \\
+\mathbf{C}\mathbf{A}^{n-1} 
+\end{bmatrix}
+$$
 
 **可观性判据**：系统完全可观当且仅当 $\text{rank}(\mathbf{C}_o) = n$。
 
