@@ -1,391 +1,255 @@
 ---
-title: "信号与系统 - 系统的状态变量"
+title: "信号与系统 - 离散时间系统的时域分析"
 date: 2026-05-09 00:00:00 +0800
 categories: [数学, 信号]
-tags: [信号, 状态变量, 状态空间]
+tags: [信号, 离散时间系统, 时域分析]
 author: wjj
 toc: true
 math: true
 ---
 
-# 系统的状态变量
+# 离散时间系统的时域分析
 
-## 状态变量的基本概念
+## 离散时间信号
 
-### 状态的定义
+### 离散时间信号的表示
 
-系统的状态是描述系统过去、现在和未来行为的最小一组变量。
+离散时间信号是定义在离散时刻 $n$（ $n$ 为整数）的信号，记为 $x[n]$。
 
-**状态变量**：构成状态的变量，记为 $q_1(t), q_2(t), \ldots, q_n(t)$。
+**示例**：
+- 单位脉冲序列： $\delta[n] = \begin{cases} 1, & n=0 \\ 0, & n \neq 0 \end{cases}$
+- 单位阶跃序列： $u[n] = \begin{cases} 1, & n \geq 0 \\ 0, & n < 0 \end{cases}$
+- 矩形序列： $R_N[n] = \begin{cases} 1, & 0 \leq n \leq N-1 \\ 0, & \text{其他} \end{cases}$
 
-**状态向量**：
+### 常用离散信号
 
-$$
-\mathbf{q}(t) = 
-\begin{bmatrix} 
-q_1(t) \\ 
-q_2(t) \\ 
-\vdots \\
-q_n(t) 
-\end{bmatrix}
-$$
+**指数序列**：
 
-### 状态方程的建立
+$$x[n] = a^n u[n]$$
 
-**连续时间系统**：
+**正弦序列**：
 
-$$\dot{\mathbf{q}}(t) = \mathbf{A} \mathbf{q}(t) + \mathbf{B} \mathbf{x}(t)$$
+$$x[n] = \sin(\omega n)u[n]$$
 
-$$\mathbf{y}(t) = \mathbf{C} \mathbf{q}(t) + \mathbf{D} \mathbf{x}(t)$$
+**复指数序列**：
 
-其中：
-- $\mathbf{A}$：状态矩阵（n×n）
-- $\mathbf{B}$：输入矩阵（n×p）
-- $\mathbf{C}$：输出矩阵（q×n）
-- $\mathbf{D}$：直接传输矩阵（q×p）
+$$x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)$$
 
-**离散时间系统**：
+**抽样信号**：
 
-$$\mathbf{q}[n+1] = \mathbf{A} \mathbf{q}[n] + \mathbf{B} \mathbf{x}[n]$$
+$$Sa[n] = \frac{\sin(\omega n)}{\omega n}$$
 
-$$\mathbf{y}[n] = \mathbf{C} \mathbf{q}[n] + \mathbf{D} \mathbf{x}[n]$$
+### 信号的基本运算
+
+**移位**： $y[n] = x[n - n_0]$
+
+**反转**： $y[n] = x[-n]$
+
+**尺度变换**： $y[n] = x[kn]$（ $k$ 为整数）
+
+**加法**： $y[n] = x_1[n] + x_2[n]$
+
+**乘法**： $y[n] = x_1[n] \cdot x_2[n]$
+
+### 离散时间信号的分解
+
+**单位脉冲分解**：
+
+$$x[n] = \sum_{k=-\infty}^{\infty} x[k] \delta[n-k]$$
+
+## 离散时间系统
+
+### 线性时不变系统
+
+**线性性质**：
+
+$$T\{a x_1[n] + b x_2[n]\} = a T\{x_1[n]\} + b T\{x_2[n]\}$$
+
+**时不变性质**：
+
+$$\text{若 } T\{x[n]\} = y[n], \text{ 则 } T\{x[n-n_0]\} = y[n-n_0]$$
+
+### 差分方程
+
+**一阶差分**：
+
+$$\Delta x[n] = x[n] - x[n-1]$$
+
+**二阶差分**：
+
+$$\Delta^2 x[n] = \Delta(\Delta x[n]) = x[n] - 2x[n-1] + x[n-2]$$
+
+**线性常系数差分方程**：
+
+$$\sum_{k=0}^{N} a_k y[n-k] = \sum_{m=0}^{M} b_m x[n-m]$$
+
+### 单位脉冲响应
+
+线性时不变系统对单位脉冲 $\delta[n]$ 的响应称为单位脉冲响应，记为 $h[n]$。
+
+**系统输出**：
+
+$$y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k] h[n-k]$$
+
+## 卷积和
+
+### 卷积和的定义
+
+$$y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k] h[n-k]$$
+
+### 卷积和的性质
+
+**交换律**：
+
+$$x[n] * h[n] = h[n] * x[n]$$
+
+**结合律**：
+
+$$(x[n] * h_1[n]) * h_2[n] = x[n] * (h_1[n] * h_2[n])$$
+
+**分配律**：
+
+$$x[n] * (h_1[n] + h_2[n]) = x[n] * h_1[n] + x[n] * h_2[n]$$
+
+**时移性质**：
+
+$$x[n-n_1] * h[n-n_2] = y[n-n_1-n_2]$$
+
+### 卷积和的计算
+
+**图解法步骤**：
+1. 反转：将 $h[k]$ 反转得到 $h[-k]$
+2. 移位：将 $h[-k]$ 移位 $n$ 位得到 $h[n-k]$
+3. 相乘： $x[k] \cdot h[n-k]$
+4. 求和： $\sum_{k=-\infty}^{\infty} x[k] h[n-k]$
+
+## 差分方程的时域解法
+
+### 递推法
+
+**示例**：求解 $y[n] - 0.5y[n-1] = x[n], \quad y[-1] = 1$
+
+$$y[n] = 0.5y[n-1] + x[n]$$
+
+### 经典解法
+
+**齐次解 + 特解**：
+
+1. **齐次方程**： $\sum_{k=0}^{N} a_k y_h[n-k] = 0$
+2. **特征方程**： $\sum_{k=0}^{N} a_k r^k = 0$
+3. **齐次解**： $y_h[n] = \sum_{i=1}^{N} A_i r_i^n$（单根情况）
+4. **特解**：根据激励形式假设特解形式
+5. **完全解**： $y[n] = y_h[n] + y_p[n]$
+6. **确定系数**：利用初始条件确定 $A_i$
+
+### 零输入响应和零状态响应
+
+**零输入响应**（仅由初始条件引起）：
+
+$$y_{zi}[n] = \sum_{i=1}^{N} A_i r_i^n$$
+
+**零状态响应**（仅由输入引起）：
+
+$$y_{zs}[n] = x[n] * h[n]$$
+
+**完全响应**：
+
+$$y[n] = y_{zi}[n] + y_{zs}[n]$$
+
+## 系统的因果性和稳定性
+
+### 因果性
+
+系统是因果的当且仅当：
+
+$$h[n] = 0, \quad n < 0$$
+
+### 稳定性
+
+系统是稳定的当且仅当单位脉冲响应绝对可和：
+
+$$\sum_{n=-\infty}^{\infty} |h[n]| < \infty$$
+
+### 因果稳定系统
+
+$$h[n] = 0, \quad n < 0 \quad \text{且} \quad \sum_{n=0}^{\infty} |h[n]| < \infty$$
+
+## 离散时间系统的时域特性
+
+### 记忆系统与无记忆系统
+
+**无记忆系统**：输出仅取决于当前输入
+
+$$y[n] = F(x[n])$$
+
+**记忆系统**：输出与过去或未来输入有关
+
+### 线性系统的判断
+
+**叠加性**： $T\{x_1[n] + x_2[n]\} = T\{x_1[n]\} + T\{x_2[n]\}$
+
+**齐次性**： $T\{a x[n]\} = a T\{x[n]\}$
+
+### 时不变系统的判断
+
+$$T\{x[n-n_0]\} = y[n-n_0]$$
+
+## 状态方程
 
 ### 状态变量的选择
 
-**选择原则**：
-- 选择储能元件的输出作为状态变量
-- 状态变量应线性无关
-- 状态变量个数等于系统阶数
+**选择原则**：选择系统的储能元件的输出作为状态变量
 
-**示例**：RLC电路
+### 状态方程的建立
+
+**一阶系统**：
 
 $$
 \begin{cases}
-q_1 = i_L \\
-q_2 = v_C
+q[n+1] = a q[n] + b x[n] \\
+y[n] = c q[n] + d x[n]
 \end{cases}
 $$
 
-## 连续时间系统的状态方程
-
-### 由微分方程建立状态方程
-
-**步骤**：
-1. 选择状态变量
-2. 写出状态变量的一阶导数表达式
-3. 写出输出方程
-
-**示例**：二阶系统
-
-$$y''(t) + a_1 y'(t) + a_0 y(t) = b_1 x'(t) + b_0 x(t)$$
-
-**状态变量选择**：
-
-$$q_1 = y(t)$$
-
-$$q_2 = y'(t)$$
-
-**状态方程**：
-
-$$\begin{bmatrix} \dot{q}_1 \\ \dot{q}_2 \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -a_0 & -a_1 \end{bmatrix} \begin{bmatrix} q_1 \\ q_2 \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \end{bmatrix} x(t)$$
-
-**输出方程**：
-
-$$y(t) = \begin{bmatrix} b_0 & b_1 \end{bmatrix} \begin{bmatrix} q_1 \\ q_2 \end{bmatrix}$$
-
-### 由传递函数建立状态方程
-
-**直接形式I**：
-
-$$H(s) = \frac{b_m s^m + b_{m-1} s^{m-1} + \cdots + b_0}{s^n + a_{n-1} s^{n-1} + \cdots + a_0}$$
-
-**状态方程**：
+**矩阵形式**：
 
 $$
-\mathbf{A} = 
-\begin{bmatrix} 
-0 & 1 & 0 & \cdots & 0 \\ 
-0 & 0 & 1 & \cdots & 0 \\ 
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & \cdots & 1 \\
--a_0 & -a_1 & -a_2 & \cdots & -a_{n-1} 
-\end{bmatrix}
-$$
-
-$$
-\mathbf{B} = 
-\begin{bmatrix} 
-0 \\ 0 \\ \vdots \\ 0 \\ 1 
-\end{bmatrix}
-$$
-
-**直接形式II**：
-
-$$
-\mathbf{A} = 
-\begin{bmatrix} 
-0 & 0 & \cdots & 0 & -a_0 \\
-1 & 0 & \cdots & 0 & -a_1 \\
-0 & 1 & \cdots & 0 & -a_2 \\
-\vdots & \vdots & \ddots & \vdots & \vdots \\
-0 & 0 & \cdots & 1 & -a_{n-1} 
-\end{bmatrix}
-$$
-
-### 由方框图建立状态方程
-
-**步骤**：
-1. 在积分器输出端设置状态变量
-2. 写出每个状态变量的导数表达式
-3. 写出输出方程
-
-## 离散时间系统的状态方程
-
-### 由差分方程建立状态方程
-
-**示例**：二阶差分方程
-
-$$y[n] + a_1 y[n-1] + a_0 y[n-2] = b_1 x[n-1] + b_0 x[n-2]$$
-
-**状态变量选择**：
-
-$$q_1[n] = y[n]$$
-
-$$q_2[n] = y[n-1]$$
-
-**状态方程**：
-
-$$
-\begin{bmatrix} 
-q_1[n+1] \\ q_2[n+1] 
+\begin{bmatrix} q_1[n+1] \\
+q_2[n+1] \\
+\vdots \\ q_N[n+1] 
 \end{bmatrix} = 
 \begin{bmatrix} 
--a_1 & -a_0 \\ 1 & 0 
+a_{11} & a_{12} & \cdots & a_{1N} \\
+a_{21} & a_{22} & \cdots & a_{2N} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{N1} & a_{N2} & \cdots & a_{NN} 
+\end{bmatrix}
+\begin{bmatrix} 
+q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] 
+\end{bmatrix} +
+\begin{bmatrix} 
+b_1 \\ b_2 \\ \vdots \\ b_N 
+\end{bmatrix} x[n]
+$$
+
+$$
+y[n] = 
+\begin{bmatrix} 
+c_1 & c_2 & \cdots & c_N 
 \end{bmatrix} 
 \begin{bmatrix} 
-q_1[n] \\ q_2[n] 
-\end{bmatrix} + 
-\begin{bmatrix} 
-b_1 & b_0 \\ 0 & 0 
-\end{bmatrix} 
-\begin{bmatrix} 
-x[n] \\ x[n-1] 
-\end{bmatrix}
+q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] 
+\end{bmatrix} + d x[n]
 $$
 
-### 由z域传递函数建立状态方程
-
-**直接形式**：
-
-$$H(z) = \frac{b_m z^m + b_{m-1} z^{m-1} + \cdots + b_0}{z^n + a_{n-1} z^{n-1} + \cdots + a_0}$$
-
-**状态方程**：
-
-$$\mathbf{A} = \begin{bmatrix} 0 & 1 & 0 & \cdots & 0 \\ 0 & 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \cdots & 1 \\ -a_0 & -a_1 & -a_2 & \cdots & -a_{n-1} \end{bmatrix}$$
-
-## 状态方程的求解
-
-### 连续时间系统的时域解
-
-**状态转移矩阵**：
-
-$$\Phi(t) = e^{\mathbf{A}t} = \mathcal{L}^{-1}\{(s\mathbf{I} - \mathbf{A})^{-1}\}$$
-
-**状态方程的解**：
-
-$$\mathbf{q}(t) = \Phi(t) \mathbf{q}(0) + \int_{0}^{t} \Phi(t-\tau) \mathbf{B} \mathbf{x}(\tau) d\tau$$
-
-**输出方程的解**：
-
-$$\mathbf{y}(t) = \mathbf{C} \Phi(t) \mathbf{q}(0) + \mathbf{C} \int_{0}^{t} \Phi(t-\tau) \mathbf{B} \mathbf{x}(\tau) d\tau + \mathbf{D} \mathbf{x}(t)$$
-
-### 离散时间系统的时域解
-
-**状态转移矩阵**：
-
-$$\Phi[n] = \mathbf{A}^n$$
-
-**状态方程的解**：
-
-$$\mathbf{q}[n] = \Phi[n] \mathbf{q}[0] + \sum_{k=0}^{n-1} \Phi[n-k-1] \mathbf{B} \mathbf{x}[k]$$
-
-**输出方程的解**：
-
-$$\mathbf{y}[n] = \mathbf{C} \Phi[n] \mathbf{q}[0] + \mathbf{C} \sum_{k=0}^{n-1} \Phi[n-k-1] \mathbf{B} \mathbf{x}[k] + \mathbf{D} \mathbf{x}[n]$$
-
-## 状态方程的变换域分析
-
-### 拉普拉斯变换法
-
-**连续时间系统**：
-
-$$\mathbf{Q}(s) = (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{q}(0) + (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} \mathbf{X}(s)$$
-
-$$\mathbf{Y}(s) = \mathbf{C} (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{q}(0) + \left[ \mathbf{C} (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D} \right] \mathbf{X}(s)$$
-
-**系统函数矩阵**：
-
-$$\mathbf{H}(s) = \mathbf{C} (s\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D}$$
-
-### z变换法
-
-**离散时间系统**：
-
-$$\mathbf{Q}(z) = (z\mathbf{I} - \mathbf{A})^{-1} z \mathbf{q}[0] + (z\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} \mathbf{X}(z)$$
-
-**系统函数矩阵**：
-
-$$\mathbf{H}(z) = \mathbf{C} (z\mathbf{I} - \mathbf{A})^{-1} \mathbf{B} + \mathbf{D}$$
-
-## 状态方程的标准形式
-
-### 对角线标准形
-
-**条件**：$\mathbf{A}$ 有n个不同的特征值。
-
-**变换矩阵**：$\mathbf{P} = [\mathbf{v}_1 \mathbf{v}_2 \cdots \mathbf{v}_n]$，其中 $\mathbf{v}_i$ 为特征向量。
-
-**对角线化**：
-
-$$\mathbf{\Lambda} = \mathbf{P}^{-1} \mathbf{A} \mathbf{P} = \begin{bmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{bmatrix}$$
-
-### 约当标准形
-
-**条件**：$\mathbf{A}$ 有重特征值。
-
-**约当块**：
-
-$$
-\mathbf{J}_k = 
-\begin{bmatrix} 
-\lambda & 1 & 0 & \cdots & 0 \\
-0 & \lambda & 1 & \cdots & 0 \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & \cdots & \lambda 
-\end{bmatrix}
-$$
-
-## 系统的可控性与可观性
-
-### 可控性
-
-**定义**：对于任意初始状态 $\mathbf{q}(0)$ 和任意目标状态 $\mathbf{q}(T)$，存在控制输入 $\mathbf{x}(t)$ 使得系统在有限时间 $T$ 内从 $\mathbf{q}(0)$ 转移到 $\mathbf{q}(T)$。
-
-**可控性矩阵**：
-
-$$\mathbf{C}_c = \begin{bmatrix} \mathbf{B} & \mathbf{A}\mathbf{B} & \mathbf{A}^2\mathbf{B} & \cdots & \mathbf{A}^{n-1}\mathbf{B} \end{bmatrix}$$
-
-**可控性判据**：系统完全可控当且仅当 $\text{rank}(\mathbf{C}_c) = n$。
-
-### 可观性
-
-**定义**：通过测量有限时间内的输出 $\mathbf{y}(t)$，可以唯一确定系统的初始状态 $\mathbf{q}(0)$。
-
-**可观性矩阵**：
-
-$$
-\mathbf{C}_o = 
-\begin{bmatrix} \mathbf{C} \\
-\mathbf{C}\mathbf{A} \\
-\mathbf{C}\mathbf{A}^2 \\
-\vdots \\
-\mathbf{C}\mathbf{A}^{n-1} 
-\end{bmatrix}
-$$
-
-**可观性判据**：系统完全可观当且仅当 $\text{rank}(\mathbf{C}_o) = n$。
-
-### 对偶原理
-
-**可控性与可观性的对偶关系**：
-
-- 系统 $(\mathbf{A}, \mathbf{B}, \mathbf{C})$ 可控 $\Longleftrightarrow$ 系统 $(\mathbf{A}^T, \mathbf{C}^T, \mathbf{B}^T)$ 可观
-- 系统 $(\mathbf{A}, \mathbf{B}, \mathbf{C})$ 可观 $\Longleftrightarrow$ 系统 $(\mathbf{A}^T, \mathbf{C}^T, \mathbf{B}^T)$ 可控
-
-## 状态反馈与状态观测器
-
-### 状态反馈
-
-**状态反馈控制律**：
-
-$$\mathbf{u}(t) = -\mathbf{K} \mathbf{q}(t) + \mathbf{r}(t)$$
-
-其中 $\mathbf{K}$ 为反馈增益矩阵，$\mathbf{r}(t)$ 为参考输入。
-
-**闭环系统**：
-
-$$\dot{\mathbf{q}}(t) = (\mathbf{A} - \mathbf{B}\mathbf{K}) \mathbf{q}(t) + \mathbf{B} \mathbf{r}(t)$$
-
-**极点配置**：通过选择 $\mathbf{K}$ 可以任意配置闭环系统的极点。
-
-### 状态观测器
-
-**全阶观测器**：
-
-$$\dot{\hat{\mathbf{q}}}(t) = \mathbf{A} \hat{\mathbf{q}}(t) + \mathbf{B} \mathbf{u}(t) + \mathbf{L} (\mathbf{y}(t) - \hat{\mathbf{y}}(t))$$
-
-其中 $\mathbf{L}$ 为观测器增益矩阵。
-
-**观测误差**：
-
-$$\mathbf{e}(t) = \mathbf{q}(t) - \hat{\mathbf{q}}(t)$$
-
-$$\dot{\mathbf{e}}(t) = (\mathbf{A} - \mathbf{L}\mathbf{C}) \mathbf{e}(t)$$
-
-## 状态变量法的应用
-
-### 控制系统设计
-
-- 极点配置
-- 最优控制
-- 自适应控制
-
-### 信号处理
-
-- 滤波器设计
-- 自适应滤波
-- 状态空间建模
-
-### 系统仿真
-
-- 数字仿真
-- 实时仿真
-- 硬件在环仿真
-
-## 状态变量法的优缺点
-
-### 优点
-- 适用于多输入多输出系统
-- 提供系统内部状态信息
-- 便于计算机实现
-- 统一的数学框架
-
-### 缺点
-- 状态变量选择不唯一
-- 计算复杂度较高
-- 需要更多的计算资源
-
-## 状态变量与系统函数的关系
-
-**系统函数**：
-
-$$H(s) = \frac{\mathbf{C} \text{adj}(s\mathbf{I} - \mathbf{A}) \mathbf{B} + \mathbf{D} \det(s\mathbf{I} - \mathbf{A})}{\det(s\mathbf{I} - \mathbf{A})}$$
-
-**特征方程**：
-
-$$\det(s\mathbf{I} - \mathbf{A}) = 0$$
-
-**极点**：特征方程的根，即 $\mathbf{A}$ 的特征值。
-
-## 总结
-
-状态变量法是分析和设计复杂系统的强大工具，它提供了系统内部状态的完整描述，便于进行现代控制理论的各种设计方法。
+## 离散时间系统的时域分析总结
 
 | 概念 | 描述 |
 |------|------|
-| 状态向量 | $\mathbf{q}(t) = [q_1, q_2, \ldots, q_n]^T$ |
-| 状态方程 | $\dot{\mathbf{q}} = \mathbf{A}\mathbf{q} + \mathbf{B}\mathbf{x}$ |
-| 输出方程 | $\mathbf{y} = \mathbf{C}\mathbf{q} + \mathbf{D}\mathbf{x}$ |
-| 状态转移矩阵 | $\Phi(t) = e^{\mathbf{A}t}$ |
-| 可控性 | $\text{rank}([\mathbf{B}, \mathbf{A}\mathbf{B}, \ldots, \mathbf{A}^{n-1}\mathbf{B}]) = n$ |
-| 可观性 | $\text{rank}([\mathbf{C}, \mathbf{C}\mathbf{A}, \ldots, \mathbf{C}\mathbf{A}^{n-1}]^T) = n$ |
+| 单位脉冲响应 | $h[n] = T\{\delta[n]\}$ |
+| 卷积和 | $y[n] = x[n] * h[n]$ |
+| 差分方程 | $\sum_{k=0}^{N} a_k y[n-k] = \sum_{m=0}^{M} b_m x[n-m]$ |
+| 零输入响应 | 仅由初始条件引起 |
+| 零状态响应 | 仅由输入引起 |
+| 因果性 | $h[n] = 0, n < 0$ |
+| 稳定性 | $\sum_{n=-\infty}^{\infty} \|h[n]\| < \infty$ |
