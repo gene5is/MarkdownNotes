@@ -258,17 +258,82 @@ $$\mathcal{L}\{f_1(t) \cdot f_2(t)\} = \frac{1}{2\pi j} F_1(s) * F_2(s)$$
 
 ### 初值定理
 
+**命题**
+
 若 $f(t)$ 在 $t = 0^+$ 不包含冲激函数，则：
 
-$$f(0^+) = \lim_{s \to \infty} sF(s)$$
+$$\lim_{t\to 0_+}f(t) = f(0_+) = \lim_{s \to \infty} sF(s)$$
+
+若 $f(t)$ 包含冲激函数 $k\delta(t)$ ，则： $\mathcal{L}[f(t)] = F(s)=k+F_1(s)$ , 其中 $F_1(s)$ 为真分式， 初值定理表示为
+
+$$
+f(0_+) = \lim_{s\to\infty}[sF(s) - ks] \\
+\text{或者} \\
+f(0_+) = \lim_{s \to \infty} sF(s)
+$$ 
+
+**证明**
+由原函数时域微分定理知
+
+$$
+\begin{aligned}
+sF(s) - f(0_-) &= \mathcal{L}[\frac{df(t)}{dt}] \\
+&= \int_{0_-}^{\infty} \frac{df(t)}{dt}e^{-st}dt  \\
+&=\int_{0_-}^{0_+} \frac{df(t)}{dt}e^{-st}dt + \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt \\
+&= f(0_+) - f(0_-) + \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt \\ 
+\end{aligned}
+$$
+
+有
+
+$$
+sF(s)= f(0_+)+ \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt
+$$
+
+当 $s\to \infty$ , 有 
+$$
+\lim_{s\to \infty}[\int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt] = \int_{0_+}^{\infty} \frac{df(t)}{dt}[\lim_{s\to \infty}e^{-st}]dt = 0
+$$
+
+故 $s\to \infty$ ，有
+
+$$
+\lim_{s \to \infty} sF(s) = f(0_+)
+$$
 
 ### 终值定理
+
+**命题**
 
 若 $\lim_{t \to \infty} f(t)$ 存在，则：
 
 $$f(\infty) = \lim_{s \to 0} sF(s)$$
 
 **使用条件**： $sF(s)$ 的收敛域包含 $s = 0$（即 $s = 0$ 在收敛域内或在边界上）
+
+**证明**
+由原函数时域微分定理知
+
+$$
+\begin{aligned}
+sF(s) - f(0_-) &= \mathcal{L}[\frac{df(t)}{dt}] \\
+&= \int_{0_-}^{\infty} \frac{df(t)}{dt}e^{-st}dt  \\
+&=\int_{0_-}^{0_+} \frac{df(t)}{dt}e^{-st}dt + \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt \\
+&= f(0_+) - f(0_-) + \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt \\ 
+\end{aligned}
+$$
+
+有
+
+$$
+sF(s)= f(0_+)+ \int_{0_+}^{\infty} \frac{df(t)}{dt}e^{-st}dt
+$$
+ 
+当 $s\to 0$
+
+$$
+\lim_{s\to 0}sF(s) = f(0_+) + \lim_{s\to 0} \int_0^{\infty}\frac{df(t)}{dt}e^{-st}dt = f(0_+) + \lim_{t\to\infty}f(t) - f(0_+) = \lim_{t\to\infty}f(t) 
+$$
 
 ## 拉普拉斯逆变换
 
@@ -429,3 +494,24 @@ $$H(s) = \frac{Y(s)}{X(s)} = \mathcal{L}\{h(t)\}$$
 | 15 | $\cosh(\omega t)$ | $\frac{s}{s^2-\omega^2}$ | $\text{Re}\{s\} > 0$ |
 | 16 | $f'(t)$ | $sF(s) - f(0^-)$ | — |
 | 17 | $\int_{-\infty}^{t} f(\tau)d\tau$ | $\frac{F(s)}{s} + \frac{f^{-1}(0^-)}{s}$ | — |
+
+## 拉式变换性质
+
+$$
+\mathcal{L}[f(t)] = F(s) ,\ \mathcal{L}[f_1(t)] = F_1(s),\ \mathcal{L}[f_2(t)] = F_2(s)
+$$
+
+|序号 |名称 |结论 |
+|------|---------|-------------------|
+| 1 | 线性（叠加） | $$\mathcal{L}[K_1f_1(t)+K_2f_2(t)] = K_1F_1(s)+K_2F_2(s)$$ |
+| 2 | 对t微分 | $$ \begin{aligned} \mathcal{L}[\frac{df(t)}{dt}] = sF(s)-f(0) \\ \mathcal{L}[\frac{d^nf(t)}{dt}] = s^nF(s) - \sum_{r=0}^{n-1} s^{n-r-1}f^{(r)}(0) \end{aligned} $$ |
+| 3 | 对t积分| $$\mathcal{L}[\int_{-\infty}^t f(\tau)d\tau] = \frac{F(s)}{s} + \frac{f^{-1}(0)}{s}$$|
+| 4 | 时域平移| $$\mathcal{L}[f(t-t_0)u(t-t_0)] = e^{-st_0}F(s)$$|
+| 5 | s域平移| $$\mathcal{L}[f(t)e^{-at}] = F(s+a)$$|
+| 6 | 尺度变换| $$\mathcal{L}[f(at)] = \frac{1}{a}F(\frac{s}{a})$$|
+| 7 | 初值| $$\lim_{t\to 0}f(t) = \lim_{s\to\infty}sF(s)$$|
+| 8 | 终止| $$\lim_{t\to\infty} = \lim_{s\to0}sF(s)$$|
+| 9 | 卷积| $$\mathcal{L}[\int_0^tf_1(\tau)f_2(t-\tau)dt]=F_1(s)F_2(s)$$|
+| 10 | 相乘| $$\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty}F_1(p)F_2(s-p)dp = \mathcal{L}[f_1(t)f_2(t)]$$|
+| 11 | 对s微分 | $$\mathcal{L}[-tf(t)] = \frac{dF(s)}{ds}$$|
+| 12 | 对s积分| $$\mathcal{L}[\frac{f(t)}{t}]= \int_s^\infty F(s)ds$$| 
