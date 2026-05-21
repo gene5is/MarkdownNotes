@@ -504,7 +504,7 @@ $$
 |序号 |名称 |结论 |
 |------|---------|-------------------|
 | 1 | 线性（叠加） | $$\mathcal{L}[K_1f_1(t)+K_2f_2(t)] = K_1F_1(s)+K_2F_2(s)$$ |
-| 2 | 对t微分 | $$ \begin{aligned} \mathcal{L}[\frac{df(t)}{dt}] = sF(s)-f(0) \\ \mathcal{L}[\frac{d^nf(t)}{dt}] = s^nF(s) - \sum_{r=0}^{n-1} s^{n-r-1}f^{(r)}(0) \end{aligned} $$ |
+| 2 | 对t微分 | $$  \mathcal{L}[\frac{df(t)}{dt}] = sF(s)-f(0) \\ \mathcal{L}[\frac{d^nf(t)}{dt}] = s^nF(s) - \sum_{r=0}^{n-1} s^{n-r-1}f^{(r)}(0) $$ |
 | 3 | 对t积分| $$\mathcal{L}[\int_{-\infty}^t f(\tau)d\tau] = \frac{F(s)}{s} + \frac{f^{-1}(0)}{s}$$|
 | 4 | 时域平移| $$\mathcal{L}[f(t-t_0)u(t-t_0)] = e^{-st_0}F(s)$$|
 | 5 | s域平移| $$\mathcal{L}[f(t)e^{-at}] = F(s+a)$$|
