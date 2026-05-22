@@ -14,14 +14,23 @@ math: true
 
 ### 离散时间信号的表示
 
-离散时间信号是定义在离散时刻 $n$（$n$ 为整数）的信号，记为 $x[n]$。
+离散时间信号是定义在离散时刻 $n$（ $n$ 为整数）的信号，记为 $x[n]$。
 
-**示例**：
-- 单位脉冲序列：$\delta[n] = \begin{cases} 1, & n=0 \\ 0, & n \neq 0 \end{cases}$
-- 单位阶跃序列：$u[n] = \begin{cases} 1, & n \geq 0 \\ 0, & n < 0 \end{cases}$
-- 矩形序列：$R_N[n] = \begin{cases} 1, & 0 \leq n \leq N-1 \\ 0, & \text{其他} \end{cases}$
 
 ### 常用离散信号
+
+**单位脉冲序列**：
+
+$$\delta[n] = \begin{cases} 1, & n=0 \\ 0, & n \neq 0 \end{cases}$$
+
+**单位阶跃序列**： 
+
+$$u[n] = \begin{cases} 1, & n \geq 0 \\ 0, & n < 0 \end{cases}$$
+
+**矩形序列**： 
+
+$$R_N[n] = \begin{cases} 1, & 0 \leq n \leq N-1 \\ 0, & \text{其他} \end{cases}$$
+
 
 **指数序列**：
 
@@ -41,15 +50,15 @@ $$Sa[n] = \frac{\sin(\omega n)}{\omega n}$$
 
 ### 信号的基本运算
 
-**移位**：$y[n] = x[n - n_0]$
+**移位**： $y[n] = x[n - n_0]$
 
-**反转**：$y[n] = x[-n]$
+**反转**： $y[n] = x[-n]$
 
-**尺度变换**：$y[n] = x[kn]$（$k$ 为整数）
+**尺度变换**： $y[n] = x[kn]$（ $k$ 为整数）
 
-**加法**：$y[n] = x_1[n] + x_2[n]$
+**加法**： $y[n] = x_1[n] + x_2[n]$
 
-**乘法**：$y[n] = x_1[n] \cdot x_2[n]$
+**乘法**： $y[n] = x_1[n] \cdot x_2[n]$
 
 ### 离散时间信号的分解
 
@@ -120,26 +129,34 @@ $$x[n-n_1] * h[n-n_2] = y[n-n_1-n_2]$$
 **图解法步骤**：
 1. 反转：将 $h[k]$ 反转得到 $h[-k]$
 2. 移位：将 $h[-k]$ 移位 $n$ 位得到 $h[n-k]$
-3. 相乘：$x[k] \cdot h[n-k]$
-4. 求和：$\sum_{k=-\infty}^{\infty} x[k] h[n-k]$
+3. 相乘： $x[k] \cdot h[n-k]$
+4. 求和： $\sum_{k=-\infty}^{\infty} x[k] h[n-k]$
+
+### 常用卷积和
+
+| 序号 | $x_1(n)$ | $x_2(n)$ | $x_1(n)*x_2(n)$ |
+|----|----|----|----|
+| 1 | $\delta(n)$ | $x(n)$ | $$x(n)$$ |
+| 2 | $a^n$ | $u(n)$ | $$\frac{1-a^{n+1}}{1-a}$$ |
+| 3 | $u(n)$ | $u(n)$ | $$n+1$$ |
+| 4 | $a_1^n$ | $a_2^n$ | $$\frac{a_1^{n+1}-a_2^{n+1}}{a_1-a_2} \quad (a_1 \neq a_2) $$ | 
+| 5 | $a^n$ | $n$ | $$\frac{n}{1-a}+\frac{a(a^n-1)}{(1-a)^2}$$ |
+| 6 | $n$ | $n$ | $$\frac{1}{6}(n-1)n(n+1)$$ |
+| 7 | $a^n$ | $a^n$ | $$(n+1)a^n$$ |
+| 8 | $a_1^n\cos(\omega n + \theta)$ | $a_2^n$ | $$\frac{a_1^{n+1}\cos[\omega(n+1)+\theta-\varphi]-a_2^{n+1}\cos(\theta-\varphi)}{\sqrt{a_1^2+a_1^2-2a_1a_2\cos\omega}} \\ \varphi = \arctan(\frac{a_1\sin\omega}{a_1\cos\omega - a_2})$$ |
+
 
 ## 差分方程的时域解法
 
-### 递推法
 
-**示例**：求解 $y[n] - 0.5y[n-1] = x[n], \quad y[-1] = 1$
-
-$$y[n] = 0.5y[n-1] + x[n]$$
-
-### 经典解法
 
 **齐次解 + 特解**：
 
-1. **齐次方程**：$\sum_{k=0}^{N} a_k y_h[n-k] = 0$
-2. **特征方程**：$\sum_{k=0}^{N} a_k r^k = 0$
-3. **齐次解**：$y_h[n] = \sum_{i=1}^{N} A_i r_i^n$（单根情况）
+1. **齐次方程**： $\sum_{k=0}^{N} a_k y_h[n-k] = 0$
+2. **特征方程**： $\sum_{k=0}^{N} a_k r^k = 0$
+3. **齐次解**： $y_h[n] = \sum_{i=1}^{N} A_i r_i^n$（单根情况）
 4. **特解**：根据激励形式假设特解形式
-5. **完全解**：$y[n] = y_h[n] + y_p[n]$
+5. **完全解**： $y[n] = y_h[n] + y_p[n]$
 6. **确定系数**：利用初始条件确定 $A_i$
 
 ### 零输入响应和零状态响应
@@ -186,9 +203,9 @@ $$y[n] = F(x[n])$$
 
 ### 线性系统的判断
 
-**叠加性**：$T\{x_1[n] + x_2[n]\} = T\{x_1[n]\} + T\{x_2[n]\}$
+**叠加性**： $T\{x_1[n] + x_2[n]\} = T\{x_1[n]\} + T\{x_2[n]\}$
 
-**齐次性**：$T\{a x[n]\} = a T\{x[n]\}$
+**齐次性**： $T\{a x[n]\} = a T\{x[n]\}$
 
 ### 时不变系统的判断
 
@@ -204,23 +221,43 @@ $$T\{x[n-n_0]\} = y[n-n_0]$$
 
 **一阶系统**：
 
-$$\begin{cases}
+$$
+\begin{cases}
 q[n+1] = a q[n] + b x[n] \\
 y[n] = c q[n] + d x[n]
-\end{cases}$$
+\end{cases}
+$$
 
 **矩阵形式**：
 
-$$\begin{bmatrix} q_1[n+1] \\ q_2[n+1] \\ \vdots \\ q_N[n+1] \end{bmatrix} = 
-\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1N} \\
+$$
+\begin{bmatrix} q_1[n+1] \\
+q_2[n+1] \\
+\vdots \\ q_N[n+1] 
+\end{bmatrix} = 
+\begin{bmatrix} 
+a_{11} & a_{12} & \cdots & a_{1N} \\
 a_{21} & a_{22} & \cdots & a_{2N} \\
 \vdots & \vdots & \ddots & \vdots \\
-a_{N1} & a_{N2} & \cdots & a_{NN} \end{bmatrix}
-\begin{bmatrix} q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] \end{bmatrix} +
-\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_N \end{bmatrix} x[n]$$
+a_{N1} & a_{N2} & \cdots & a_{NN} 
+\end{bmatrix}
+\begin{bmatrix} 
+q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] 
+\end{bmatrix} +
+\begin{bmatrix} 
+b_1 \\ b_2 \\ \vdots \\ b_N 
+\end{bmatrix} x[n]
+$$
 
-$$y[n] = \begin{bmatrix} c_1 & c_2 & \cdots & c_N \end{bmatrix} 
-\begin{bmatrix} q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] \end{bmatrix} + d x[n]$$
+$$
+y[n] = 
+\begin{bmatrix} 
+c_1 & c_2 & \cdots & c_N 
+\end{bmatrix} 
+\begin{bmatrix} 
+q_1[n] \\ q_2[n] \\ \vdots \\ q_N[n] 
+\end{bmatrix} + d x[n]
+$$
 
 ## 离散时间系统的时域分析总结
 
