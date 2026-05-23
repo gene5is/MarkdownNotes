@@ -38,11 +38,66 @@ $$\mathcal{Z}\{\delta[n]\} = 1, \quad \text{整个z平面}$$
 
 ### 单位阶跃序列
 
+$$
+\mathcal{Z}\{u[n]\} = \sum_{n=0}^\infty u(n)z^{-n} = \sum_{n=0}^{\infty}z^{-n}
+$$
+
 $$\mathcal{Z}\{u[n]\} = \frac{1}{1-z^{-1}} = \frac{z}{z-1}, \quad |z| > 1$$
+
+### 斜变序列
+
+$$
+\mathcal{Z} = \sum_{n=0}^{\infty}nz^{-n}
+$$
+
+两边对 $z^{-1}$ 求导
+
+$$
+\sum_{n=0}^\infty n(z^{-1})^{n-1} = \frac{1}{(1-z^-1)^2}
+$$
+
+两边同时乘 $z^{-1}$ 得到斜边序列的z变换
+
+$$
+\mathcal{L}[nu(n)] =\sum_{n=0}^\infty nz^{-n} =  \frac{z}{(z-1)^2} \quad (|z|>1)
+$$
+
+两边多次对 $z^{-1}$ 求导
+
+$$
+\mathcal{L}[n^2u(n)] = \frac{z(z+1)}{(z-1)^3}
+$$
+
+$$
+\mathcal{L}[n^3u(n)] = \frac{z(z^2+4z+1)}{(z-1)^4}
+$$
 
 ### 指数序列
 
-$$\mathcal{Z}\{a^n u[n]\} = \frac{1}{1-a z^{-1}} = \frac{z}{z-a}, \quad |z| > |a|$$
+$$
+\begin{aligned}
+\mathcal{Z}\{a^n u[n]\} 
+&= \sum_{n=0}^{\infty}a^nz^{-n} = \sum_{n=0}^{\infty}(az^{-1})^n \\
+&=\frac{1}{1-a z^{-1}}  \\
+&= \frac{z}{z-a}, \quad |z| > |a|
+\end{aligned}
+$$
+
+若令 $a = e^b$ ，当 $|z|>|e^b|$
+
+$$
+\mathcal{L}[e^{bn}u(n)] = \frac{z}{z-e^b}
+$$
+
+若两边同时对 $z^{-1}$ 求导
+
+$$
+\mathcal{L}[na^nu(n)] = \frac{az^{-1}}{(1-az^{-1})^2} = \frac{az}{(z-a)^2}
+$$
+
+$$
+\mathcal{L}[n^2a^nu(n)] = \frac{az(z+a)}{(z-a)^3}
+$$
 
 ### 正弦序列
 
@@ -218,7 +273,7 @@ $$z = e^{sT}$$
 
 $$\omega_d = \Omega T$$
 
-其中 $\omega_d$ 为数字频率，$\Omega$ 为模拟频率。
+其中 $\omega_d$ 为数字频率， $\Omega$ 为模拟频率。
 
 ## 常用z变换表
 
