@@ -656,7 +656,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{sgn(t)\} &= \lim_{\epsilon \to 0^+} [ \int_{0}^{\infty} e^{-\epsilon t} e^{-j\omega t} dt - \int_{-\infty}^{0} e^{\epsilon t} e^{-j\omega t} dt ] \\
+\mathcal{F}[sgn(t)] &= \lim_{\epsilon \to 0^+} [ \int_{0}^{\infty} e^{-\epsilon t} e^{-j\omega t} dt - \int_{-\infty}^{0} e^{\epsilon t} e^{-j\omega t} dt ] \\
 &= \lim_{\epsilon \to 0^+} [ \int_{0}^{\infty} e^{-(\epsilon + j\omega)t} dt - \int_{-\infty}^{0} e^{(\epsilon - j\omega)t} dt ] \\
 &= \lim_{\epsilon \to 0^+} [\frac{1}{-(\epsilon + j\omega)} e^{-(\epsilon + j\omega)t} |_{0}^{\infty} - \frac{1}{\epsilon - j\omega} e^{(\epsilon - j\omega)t} |_{-\infty}^{0} ] \\
 &= \lim_{\epsilon \to 0^+} [ \frac{1}{\epsilon + j\omega} - \frac{1}{\epsilon - j\omega} ] \\
@@ -727,8 +727,8 @@ F(\omega) &= \int_{-\infty}^{\infty}f(t)e^{-j\omega t}dt \\
 &= \frac{E}{2}\int_{-\tau}^{\tau}e^{-j\omega t}dt + \frac{E}{4} \int_{-\tau}^{\tau}e^{j\frac{\pi t}{\tau}} e^{-j\omega t}dt + \frac{E}{4} \int_{-\tau}^{\tau} e^{-j\frac{\pi t}{\tau}}e^{-j\omega t}dt \\
 &= \frac{E}{2}\int_{-\tau}^{\tau}e^{-j\omega t}dt + \frac{E}{4} \int_{-\tau}^{\tau} e^{j(\frac{\pi-\omega \tau}{\tau})t}dt + \frac{E}{4} \int_{-\tau}^{\tau} e^{-j(\frac{\pi+\omega \tau}{\tau})t} dt \\
 &= \frac{E}{2} \int_{-\tau}^{\tau} [\cos(\omega t)- j\sin(\omega t)]dt \\
-&\quad + \frac{E}{4} \int_{-\tau}^{\tau} \{\cos[(\frac{\pi-\omega \tau}{\tau})t] + j\sin[(\frac{\pi-\omega \tau}{\tau})t]\}dt \\
-&\quad + \frac{E}{4} \int_{-\tau}^{\tau} \{\cos[(\frac{\pi+\omega \tau}{\tau})t] - j\sin[(\frac{\pi+\omega \tau}{\tau})t]\}dt
+&\quad + \frac{E}{4} \int_{-\tau}^{\tau} [\cos[(\frac{\pi-\omega \tau}{\tau})t] + j\sin[(\frac{\pi-\omega \tau}{\tau})t]]dt \\
+&\quad + \frac{E}{4} \int_{-\tau}^{\tau} [\cos[(\frac{\pi+\omega \tau}{\tau})t] - j\sin[(\frac{\pi+\omega \tau}{\tau})t]]dt
 \end{aligned}
 $$
 
@@ -805,12 +805,12 @@ $$
 1. 预备知识
 * 单位冲激函数的变换：
 
-$$ \mathcal{F}\{\delta(t)\} = 1 $$
+$$ \mathcal{F}[\delta(t)] = 1 $$
 
 * 时域微分性质：
 
 $$ 
-\mathcal{F}{\frac{df(t)}{dt}} = j\omega \mathcal{F}\{f(t)\} 
+\mathcal{F}{\frac{df(t)}{dt}} = j\omega \mathcal{F}[f(t)] 
 $$
 
 2. 利用性质推导
@@ -820,8 +820,8 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{\delta'(t)\} &= \mathcal{F}{\frac{d\delta(t)}{dt}} \\
-&= j\omega \cdot \mathcal{F}\{\delta(t)\} \\
+\mathcal{F}[\delta'(t)] &= \mathcal{F}{\frac{d\delta(t)}{dt}} \\
+&= j\omega \cdot \mathcal{F}[\delta(t)] \\
 &= j\omega \cdot 1 \\
 &= j\omega
 \end{aligned}
@@ -840,7 +840,7 @@ $$ f'(t) = -j\omega e^{-j\omega t} \implies f'(0) = -j\omega $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{\delta'(t)\} &= \int_{-\infty}^{\infty} \delta'(t) e^{-j\omega t} dt \\
+\mathcal{F}[\delta'(t)] &= \int_{-\infty}^{\infty} \delta'(t) e^{-j\omega t} dt \\
 &= -\frac{d}{dt}(e^{-j\omega t}) \big|_{t=0} \\
 &= -(-j\omega) \\
 &= j\omega
@@ -852,14 +852,14 @@ $$
 1. 核心公式
 高阶冲激偶函数 $\delta^{(n)}(t)$ 的傅里叶变换规律为：
 
-$$ \mathcal{F}\{\delta^{(n)}(t)\} = (j\omega)^n $$
+$$ \mathcal{F}[\delta^{(n)}(t)] = (j\omega)^n $$
 
 2. 基于时域微分性质推导
 利用性质：时域每求导一次，频域乘以 $j\omega$。
 
 $$
 \begin{aligned}
-\mathcal{F}\{\delta^{(n)}(t)\} &= (j\omega)^n \cdot \mathcal{F}\{\delta(t)\} \\
+\mathcal{F}[\delta^{(n)}(t)] &= (j\omega)^n \cdot \mathcal{F}[\delta(t)] \\
 &= (j\omega)^n \cdot 1 \\
 &= (j\omega)^n
 \end{aligned}
@@ -877,7 +877,7 @@ $$ f^{(n)}(t) = (-j\omega)^n e^{-j\omega t} \implies f^{(n)}(0) = (-j\omega)^n $
 
 $$
 \begin{aligned}
-\mathcal{F}\{\delta^{(n)}(t)\} &= \int_{-\infty}^{\infty} \delta^{(n)}(t) e^{-j\omega t} dt \\
+\mathcal{F}[\delta^{(n)}(t)] &= \int_{-\infty}^{\infty} \delta^{(n)}(t) e^{-j\omega t} dt \\
 &= (-1)^n \cdot (-j\omega)^n \\
 &= [(-1) \cdot (-j\omega)]^n \\
 &= (j\omega)^n
@@ -896,11 +896,11 @@ $$ u(t) = \frac{1}{2} + \frac{1}{2}sgn(t) $$
 
 * 直流信号的变换：
 
-$$ \mathcal{F}\{1\} = 2\pi\delta(\omega) \implies \mathcal{F}(\frac{1}{2}) = \pi\delta(\omega) $$
+$$ \mathcal{F}[1] = 2\pi\delta(\omega) \implies \mathcal{F}(\frac{1}{2}) = \pi\delta(\omega) $$
 
 * 符号函数的变换：
 
-$$ \mathcal{F}\{sgn(t)\} = \frac{2}{j\omega} \implies \mathcal{F}[{\frac{1}{2}sgn(t)}] = \frac{1}{j\omega} $$
+$$ \mathcal{F}[sgn(t)] = \frac{2}{j\omega} \implies \mathcal{F}[{\frac{1}{2}sgn(t)}] = \frac{1}{j\omega} $$
 
 3. 最终公式
 将两部分合并，得到：
@@ -920,11 +920,11 @@ $$
 \cos(\omega_0 t) = \frac{1}{2} (e^{j\omega_0 t} + e^{-j\omega_0 t})
 $$
 
-根据频移性质 $\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0)$
+根据频移性质 $\mathcal{F}[f(t)e^{j\omega_0 t}] = F(\omega - \omega_0)$
 
 $$
 \begin{aligned}
-\mathcal{F}\{\cos(\omega_0 t)\} &= \frac{1}{2} \mathcal{F}\{e^{j\omega_0 t}\} + \frac{1}{2} \mathcal{F}\{e^{-j\omega_0 t}\} \\
+\mathcal{F}[\cos(\omega_0 t)] &= \frac{1}{2} \mathcal{F}[e^{j\omega_0 t}] + \frac{1}{2} \mathcal{F}[e^{-j\omega_0 t}] \\
 &= \frac{1}{2} \cdot [2\pi \delta(\omega - \omega_0)] + \frac{1}{2} \cdot [2\pi \delta(\omega + \omega_0)] \\
 &= \pi [\delta(\omega - \omega_0) + \delta(\omega + \omega_0)]
 \end{aligned}
@@ -936,11 +936,11 @@ $$
 \sin(\omega_0 t) = \frac{1}{2} (e^{j\omega_0 t} - e^{-j\omega_0 t})
 $$
 
-根据频移性质 $\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0)$
+根据频移性质 $\mathcal{F}[f(t)e^{j\omega_0 t}] = F(\omega - \omega_0)$
 
 $$
 \begin{aligned}
-\mathcal{F}\{\sin(\omega_0 t)\} &= \frac{1}{2j} \mathcal{F}\{e^{j\omega_0 t}\} - \frac{1}{2j} \mathcal{F}\{e^{-j\omega_0 t}\} \\
+\mathcal{F}[\sin(\omega_0 t)] &= \frac{1}{2j} \mathcal{F}[e^{j\omega_0 t}] - \frac{1}{2j} \mathcal{F}[e^{-j\omega_0 t}] \\
 &= \frac{\pi}{j} [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)] \\
 &= -j\pi [\delta(\omega - \omega_0) - \delta(\omega + \omega_0)]
 \end{aligned}
@@ -954,7 +954,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t)\} &= \sum_{n=-\infty}^{+\infty} F_n \cdot \mathcal{F}\{e^{j n \omega_0 t}\} \\
+\mathcal{F}[f(t)] &= \sum_{n=-\infty}^{+\infty} F_n \cdot \mathcal{F}[e^{j n \omega_0 t}] \\
 &= 2\pi \sum_{n=-\infty}^{+\infty} F_n \delta(\omega - n \omega_0)
 \end{aligned}
 $$
@@ -967,7 +967,7 @@ $$
 
 #### 线性（叠加性）
 
-**命题**： $\mathcal{F}\{a \cdot f(t) + b \cdot g(t)\} = a \cdot F(\omega) + b \cdot G(\omega)$
+**命题**： $$\mathcal{F}[a \cdot f(t) + b \cdot g(t)] = a \cdot F(\omega) + b \cdot G(\omega)$$
 
 
 $$
@@ -979,7 +979,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{a \cdot f(t) + b \cdot g(t)\} 
+\mathcal{F}[a \cdot f(t) + b \cdot g(t)] 
 &= \int_{-\infty}^{\infty} [a \cdot f(t) + b \cdot g(t)] e^{-j\omega t} dt \\
 &= \int_{-\infty}^{\infty} a \cdot f(t) e^{-j\omega t} dt + \int_{-\infty}^{\infty} b \cdot g(t) e^{-j\omega t} dt \\
 &= a \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt + b \int_{-\infty}^{\infty} g(t) e^{-j\omega t} dt \\
@@ -990,7 +990,7 @@ $$
 
 #### 对称性
 
-**命题**： 若 $\mathcal{F}\{f(t)\} = F(\omega)$，则 $\mathcal{F}\{F(t)\} = 2\pi f(-\omega)$
+**命题**： 若 $\mathcal{F}[f(t)] = F(\omega)$，则 $\mathcal{F}[F(t)] = 2\pi f(-\omega)$
 
 **证明**：
 根据傅里叶逆变换的定义式：
@@ -1014,17 +1014,17 @@ $$
 观察等式右侧积分，其在形式上完全符合信号 $F(t)$ 进行傅里叶变换的定义，故：
 
 $$
-\mathcal{F}\{F(t)\} = 2\pi f(-\omega) \quad \blacksquare
+\mathcal{F}[F(t)] = 2\pi f(-\omega) \quad \blacksquare
 $$
 
 #### 尺度变换
 
-**命题**： $\mathcal{F}\{f(at)\} = \frac{1}{|a|} F(\frac{\omega}{a}) \quad (a \neq 0)$
+**命题**： $\mathcal{F}[f(at)] = \frac{1}{|a|} F(\frac{\omega}{a}) \quad (a \neq 0)$
 
 **证明**：
 
 $$
-\mathcal{F}\{f(at)\} = \int_{-\infty}^{\infty} f(at) e^{-j\omega t} dt
+\mathcal{F}[f(at)] = \int_{-\infty}^{\infty} f(at) e^{-j\omega t} dt
 $$
 
 引入变量代换，令 $\tau = at$，则 $t = \frac{\tau}{a}$，$dt = \frac{1}{a} d\tau$ 。此处需要分参量 $a$ 的正负号讨论积分上下限：
@@ -1032,19 +1032,19 @@ $$
 1. **当 $a > 0$ 时**：积分上下限保持从 $-\infty$ 到 $\infty$ 不变：
 
 $$
-\mathcal{F}\{f(at)\} = \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} \frac{1}{a} d\tau = \frac{1}{a} F(\frac{\omega}{a})
+\mathcal{F}[f(at)] = \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} \frac{1}{a} d\tau = \frac{1}{a} F(\frac{\omega}{a})
 $$
 
 2. **当 $a < 0$ 时**：积分上下限颠倒（变为从 $\infty$ 到 $-\infty$），利用积分上下限对调产生的负号消除外面的变号：
 
 $$
-\mathcal{F}\{f(at)\} = \int_{\infty}^{-\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} \frac{1}{a} d\tau = -\frac{1}{a} \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} d\tau = \frac{1}{-a} F(\frac{\omega}{a})
+\mathcal{F}[f(at)] = \int_{\infty}^{-\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} \frac{1}{a} d\tau = -\frac{1}{a} \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \frac{\tau}{a}} d\tau = \frac{1}{-a} F(\frac{\omega}{a})
 $$
 
 综合以上两种情况，使用绝对值符号统一合并表示为：
 
 $$
-\mathcal{F}\{f(at)\} = \frac{1}{|a|} F(\frac{\omega}{a}) \quad \blacksquare
+\mathcal{F}[f(at)] = \frac{1}{|a|} F(\frac{\omega}{a}) \quad \blacksquare
 $$
 
 #### 奇偶虚实性
@@ -1105,7 +1105,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t - t_0)\} 
+\mathcal{F}[f(t - t_0)] 
 &= \int_{-\infty}^{\infty} f(\tau) e^{-j\omega (\tau + t_0)} d\tau \\
 &= \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \tau} e^{-j\omega t_0} d\tau \\
 &= e^{-j\omega t_0} \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \tau} d\tau \\
@@ -1115,13 +1115,13 @@ $$
 
 #### 频域移位
 
-频移性质： $\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0)$
+频移性质： $\mathcal{F}[f(t)e^{j\omega_0 t}] = F(\omega - \omega_0)$
 
 **证明**：
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t)e^{j\omega_0 t}\} 
+\mathcal{F}[f(t)e^{j\omega_0 t}] 
 &= \int_{-\infty}^{\infty} [f(t)e^{j\omega_0 t}] e^{-j\omega t} dt \\
 &= \int_{-\infty}^{\infty} f(t) e^{-j(\omega - \omega_0) t} dt
 \end{aligned}
@@ -1130,7 +1130,7 @@ $$
 观察上式，积分核中的自变量由 $\omega$ 变成了 $\omega - \omega_0$，根据定义，这正是 $F(\omega)$ 在频率轴上的平移：
 
 $$
-\mathcal{F}\{f(t)e^{j\omega_0 t}\} = F(\omega - \omega_0) \quad \blacksquare
+\mathcal{F}[f(t)e^{j\omega_0 t}] = F(\omega - \omega_0) \quad \blacksquare
 $$
 
 #### 卷积定理
@@ -1139,26 +1139,26 @@ $$
 
 两个时间函数卷积的频谱等效于在频域中频谱相乘
 
-**命题**： $\mathcal{F}\{f(t) * g(t)\} = F(\omega) \cdot G(\omega)$
+**命题**： $\mathcal{F}[f(t) * g(t)] = F(\omega) \cdot G(\omega)$
 
 **证明**：
 根据时域卷积的数学定义：$f(t) * g(t) = \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau$。对其整体求傅里叶变换：
 
 $$
-\mathcal{F}\{f(t) * g(t)\} = \int_{-\infty}^{\infty} [ \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau ] e^{-j\omega t} dt
+\mathcal{F}[f(t) * g(t)] = \int_{-\infty}^{\infty} [ \int_{-\infty}^{\infty} f(\tau) g(t - \tau) d\tau ] e^{-j\omega t} dt
 $$
 
 由于积分性质良好，允许交换二次积分的积分顺序（富比尼定理）：
 
 $$
-\mathcal{F}\{f(t) * g(t)\} = \int_{-\infty}^{\infty} f(\tau) [ \int_{-\infty}^{\infty} g(t - \tau) e^{-j\omega t} dt ] d\tau
+\mathcal{F}[f(t) * g(t)] = \int_{-\infty}^{\infty} f(\tau) [ \int_{-\infty}^{\infty} g(t - \tau) e^{-j\omega t} dt ] d\tau
 $$
 
-对括号内部关于 $t$ 的积分运用前面已证的**时移性质**，即 $\mathcal{F}\{g(t-\tau)\} = G(\omega)e^{-j\omega \tau}$，带回式中：
+对括号内部关于 $t$ 的积分运用前面已证的**时移性质**，即 $\mathcal{F}[g(t-\tau)] = G(\omega)e^{-j\omega \tau}$，带回式中：
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t) * g(t)\} 
+\mathcal{F}[f(t) * g(t)] 
 &= \int_{-\infty}^{\infty} f(\tau) [ G(\omega) e^{-j\omega \tau} ] d\tau \\
 &= G(\omega) \int_{-\infty}^{\infty} f(\tau) e^{-j\omega \tau} d\tau \\
 &= G(\omega) \cdot F(\omega) = F(\omega) \cdot G(\omega) \quad \blacksquare
@@ -1169,20 +1169,20 @@ $$
 
 两个时间函数频谱的卷积等效于两函数的乘积
 
-**命题**： $\mathcal{F}\{f(t) \cdot g(t)\} = \frac{1}{2\pi} F(\omega) * G(\omega)$
+**命题**： $\mathcal{F}[f(t) \cdot g(t)] = \frac{1}{2\pi} F(\omega) * G(\omega)$
 
 **证明**：
 对时域乘积信号 $f(t) \cdot g(t)$ 直接求傅里叶变换：
 
 $$
-\mathcal{F}\{f(t) \cdot g(t)\} = \int_{-\infty}^{\infty} f(t) g(t) e^{-j\omega t} dt
+\mathcal{F}[f(t) \cdot g(t)] = \int_{-\infty}^{\infty} f(t) g(t) e^{-j\omega t} dt
 $$
 
 将 $f(t)$ 用其傅里叶逆变换公式 $f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\lambda) e^{j\lambda t} d\lambda$ 代入（为避免变量冲突，积分变量用 $\lambda$）：
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t) \cdot g(t)\} 
+\mathcal{F}[f(t) \cdot g(t)] 
 &= \int_{-\infty}^{\infty} [ \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\lambda) e^{j\lambda t} d\lambda ] g(t) e^{-j\omega t} dt \\
 \end{aligned}
 $$
@@ -1191,7 +1191,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t) \cdot g(t)\} 
+\mathcal{F}[f(t) \cdot g(t)] 
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\lambda) [ \int_{-\infty}^{\infty} g(t) e^{-j(\omega - \lambda) t} dt ] d\lambda
 \end{aligned}
 $$
@@ -1200,7 +1200,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t) \cdot g(t)\} 
+\mathcal{F}[f(t) \cdot g(t)] 
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\lambda) G(\omega - \lambda) d\lambda \\
 &= \frac{1}{2\pi} F(\omega) * G(\omega) \quad \blacksquare
 \end{aligned}
@@ -1208,20 +1208,20 @@ $$
 
 #### 时域微分性质
 
-**命题**： $\mathcal{F}\{\frac{df(t)}{dt}\} = j\omega F(\omega)$ （假设信号在无穷远处满足 $f(\pm\infty) = 0$）
+**命题**： $\mathcal{F}[\frac{df(t)}{dt}] = j\omega F(\omega)$ （假设信号在无穷远处满足 $f(\pm\infty) = 0$）
 
 **证明**：
 直接对微分信号进行傅里叶变换展开，并使用分部积分法 $(\int u dv = uv - \int v du)$：
 
 $$
-\mathcal{F}\{\frac{df(t)}{dt}\} = \int_{-\infty}^{\infty} \frac{df(t)}{dt} e^{-j\omega t} dt = \int_{-\infty}^{\infty} e^{-j\omega t} df(t)
+\mathcal{F}[\frac{df(t)}{dt}] = \int_{-\infty}^{\infty} \frac{df(t)}{dt} e^{-j\omega t} dt = \int_{-\infty}^{\infty} e^{-j\omega t} df(t)
 $$
 
 令 $u = e^{-j\omega t}$，$dv = df(t)$，则有 $du = -j\omega e^{-j\omega t} dt$，$v = f(t)$：
 
 $$
 \begin{aligned}
-\mathcal{F}\{\frac{df(t)}{dt}\} 
+\mathcal{F}[\frac{df(t)}{dt}] 
 &= [ f(t) e^{-j\omega t} ]_{-\infty}^{\infty} - \int_{-\infty}^{\infty} f(t) \cdot (-j\omega e^{-j\omega t}) dt \\
 &= [ f(\infty) e^{-j\omega \cdot \infty} - f(-\infty) e^{j\omega \cdot \infty} ] + j\omega \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt
 \end{aligned}
@@ -1230,27 +1230,27 @@ $$
 由于物理可积信号在无穷远处趋于稳定且能量衰减为零，即 $f(\infty) = f(-\infty) = 0$，所以等式第一项为 $0$：
 
 $$
-\mathcal{F}\{\frac{df(t)}{dt}\} = 0 + j\omega \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt = j\omega F(\omega) \quad \blacksquare
+\mathcal{F}[\frac{df(t)}{dt}] = 0 + j\omega \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt = j\omega F(\omega) \quad \blacksquare
 $$
 
 #### 时域积分性质
-**命题**： $\mathcal{F}\{\int_{-\infty}^{t} f(\tau) d\tau\} = \frac{1}{j\omega} F(\omega) + \pi F(0)\delta(\omega)$
+**命题**： $\mathcal{F}[\int_{-\infty}^{t} f(\tau) d\tau] = \frac{1}{j\omega} F(\omega) + \pi F(0)\delta(\omega)$
 
 **证明**：
 引入单位阶跃函数 $u(t)$，积分可写为卷积形式：$\int_{-\infty}^{t} f(\tau) d\tau = f(t) * u(t)$。
 已知单位阶跃函数的频谱为（可通过极限或常数与符号函数求得）：
 
 $$
-\mathcal{F}\{u(t)\} = \frac{1}{j\omega} + \pi \delta(\omega)
+\mathcal{F}[u(t)] = \frac{1}{j\omega} + \pi \delta(\omega)
 $$
 
 根据**时域卷积定理**（性质 6），时域卷积对应频域乘积：
 
 $$
 \begin{aligned}
-\mathcal{F}\{\int_{-\infty}^{t} f(\tau) d\tau\} 
-&= \mathcal{F}\{f(t) * u(t)\} \\
-&= F(\omega) \cdot \mathcal{F}\{u(t)\} \\
+\mathcal{F}[\int_{-\infty}^{t} f(\tau) d\tau] 
+&= \mathcal{F}[f(t) * u(t)] \\
+&= F(\omega) \cdot \mathcal{F}[u(t)] \\
 &= F(\omega) \cdot [ \frac{1}{j\omega} + \pi \delta(\omega) ] \\
 &= \frac{1}{j\omega} F(\omega) + \pi F(\omega) \delta(\omega)
 \end{aligned}
@@ -1259,12 +1259,12 @@ $$
 由于冲激函数 $\delta(\omega)$ 仅在 $\omega = 0$ 处有值，根据抽样特性，常数项 $F(\omega)\delta(\omega) = F(0)\delta(\omega)$：
 
 $$
-\mathcal{F}\{\int_{-\infty}^{t} f(\tau) d\tau\} = \frac{1}{j\omega} F(\omega) + \pi F(0)\delta(\omega) \quad \blacksquare
+\mathcal{F}[\int_{-\infty}^{t} f(\tau) d\tau] = \frac{1}{j\omega} F(\omega) + \pi F(0)\delta(\omega) \quad \blacksquare
 $$
 
 #### 频域微分性质
 
-**命题**： $\mathcal{F}\{-jt \cdot f(t)\} = \frac{dF(\omega)}{d\omega}$ 或 $\mathcal{F}\{t \cdot f(t)\} = j \frac{dF(\omega)}{d\omega}$
+**命题**： $\mathcal{F}[-jt \cdot f(t)] = \frac{dF(\omega)}{d\omega}$ 或 $\mathcal{F}[t \cdot f(t)] = j \frac{dF(\omega)}{d\omega}$
 
 **证明**：
 根据傅里叶变换的定义式：
@@ -1296,20 +1296,20 @@ $$
 观察右侧积分形式，这正好是新信号 $[-jt \cdot f(t)]$ 的傅里叶变换，因此：
 
 $$
-\mathcal{F}\{-jt \cdot f(t)\} = \frac{dF(\omega)}{d\omega}
+\mathcal{F}[-jt \cdot f(t)] = \frac{dF(\omega)}{d\omega}
 $$
 
 两边同乘以 $j$（利用 $j \cdot (-j) = 1$），可得更常用的标准形式：
 
 $$
-\mathcal{F}\{t \cdot f(t)\} = j \frac{dF(\omega)}{d\omega} \quad \blacksquare
+\mathcal{F}[t \cdot f(t)] = j \frac{dF(\omega)}{d\omega} \quad \blacksquare
 $$
 
 #### 频域积分性质
 
-**命题**： $\mathcal{F}\{\frac{f(t)}{-jt}\} = \int_{-\infty}^{\omega} F(\lambda) d\lambda + \pi F(\infty \text{或码阶跃})\delta(t)$ 
+**命题**： $\mathcal{F}[\frac{f(t)}{-jt}] = \int_{-\infty}^{\omega} F(\lambda) d\lambda + \pi F(\infty \text{或码阶跃})\delta(t)$ 
 *注：在常规能量信号（$f(\pm\infty)=0$ 且无直流分量）的对偶物理场景下简化为：*
-$$\mathcal{F}\{\frac{f(t)}{t}\} = -j \int_{-\infty}^{\omega} F(\lambda) d\lambda$$
+$$\mathcal{F}[\frac{f(t)}{t}] = -j \int_{-\infty}^{\omega} F(\lambda) d\lambda$$
 
 **证明（基于对偶性与频域微分推导简化版）**：
 根据**对偶性质**与**频域微分性质**（性质 10），我们已知：
@@ -1321,7 +1321,7 @@ $$
 
 $$
 \begin{aligned}
-\mathcal{F}\{f(t)\} &= \mathcal{F}\{t \cdot g(t)\} \\
+\mathcal{F}[f(t)] &= \mathcal{F}[t \cdot g(t)] \\
 F(\omega) 
 &= j \frac{dG(\omega)}{d\omega}
 \end{aligned}
@@ -1343,10 +1343,10 @@ G(\omega)
 \end{aligned}
 $$
 
-将 $G(\omega) = \mathcal{F}\{\frac{f(t)}{t}\}$ 带回，即得：
+将 $G(\omega) = \mathcal{F}[\frac{f(t)}{t}]$ 带回，即得：
 
 $$
-\mathcal{F}\{\frac{f(t)}{t}\} = -j \int_{-\infty}^{\omega} F(\lambda) d\lambda \quad \blacksquare
+\mathcal{F}[\frac{f(t)}{t}] = -j \int_{-\infty}^{\omega} F(\lambda) d\lambda \quad \blacksquare
 $$
 
 #### 帕萨瓦尔定理（功率P与傅里叶系数的关系）
