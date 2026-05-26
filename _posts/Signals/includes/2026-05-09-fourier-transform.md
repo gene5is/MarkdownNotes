@@ -963,6 +963,8 @@ $$
 #### 抽样信号的傅里叶变换
 
 
+
+
 ### 傅里叶变换的性质
 
 #### 线性（叠加性）
@@ -1388,3 +1390,23 @@ $$
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} |F(\omega)|^2 d\omega \quad \blacksquare
 \end{aligned}
 $$
+
+# 常见信号傅里叶变换表
+
+
+| 信号 $f(t)$ | 傅里叶变换 $F(\omega)$ |
+| :--- | :--- |
+| 直流分量 $E$ | $$ 2\pi E \delta(\omega) $$ |
+| 门信号 $$ f(t) = E\left[u\left(t+\frac{\tau}{2}\right)-u\left(t-\frac{\tau}{2}\right)\right] $$ | $$ E\tau \text{Sa}\left(\frac{\omega\tau}{2}\right) $$ |
+| 三角信号 $$ f(t) = \begin{cases} E(1-\frac{2\vert t \vert}{\tau}), & \vert t \vert \le \frac{\tau}{2} \\ 0, & \vert t \vert > \frac{\tau}{2} \end{cases} $$ | $$ E\frac{\tau}{2}\text{Sa}^2\left(\frac{\omega\tau}{4}\right) $$ |
+| 抽样信号 $$ E \cdot \text{Sa}(At) $$ | $$ \frac{\pi E}{A} [u(\omega + A) - u(\omega - A)] $$ |
+| 平方抽样信号 $$ E \cdot \text{Sa}^2(At) $$ | $$ \begin{cases} \frac{\pi E}{A}\left(1-\frac{\vert\omega\vert}{2A}\right), & \vert\omega\vert \le 2A \\ 0, & \vert\omega\vert > 2A \end{cases} $$ |
+| 余弦信号  $$ \cos(\omega_0 t) $$ | $$ \pi[\delta(\omega+\omega_0)+\delta(\omega-\omega_0)] $$ |
+| 正弦信号 $$ \sin(\omega_0 t) $$ | $$ j\pi[\delta(\omega+\omega_0) - \delta(\omega-\omega_0)] $$ |
+| 周期冲激信号 $$ \delta_T(t) = \sum_{n=-\infty}^{\infty} \delta(t-nT) $$ | $$ \omega_0 \sum_{n=-\infty}^{\infty} \delta(\omega - n\omega_0) \\ \left(\omega_0 = \frac{2\pi}{T}\right) $$ |
+| 理想抽样信号 $$ f(t) \cdot \delta_T(t) $$ | $$ \frac{1}{T} \sum_{n=-\infty}^{\infty} F(\omega - n\omega_0) $$ |
+| 调制信号 $$ f(t) \cos(\omega_0 t) $$ | $$ \frac{1}{2}[F(\omega + \omega_0) + F(\omega - \omega_0)] $$ |
+| 符号函数 $$ \text{sgn}(t) $$ | $$ \frac{2}{j\omega} $$ |
+| 冲激偶 $$ \delta'(t) $$ | $$ j\omega $$ |
+| 阶跃函数 $$ u(t) $$ | $$ \pi\delta(\omega) + \frac{1}{j\omega} $$ |
+| 希尔伯特变换核 $$ \frac{1}{\pi t} $$ | $$ -j \cdot \text{sgn}(\omega) $$ |
