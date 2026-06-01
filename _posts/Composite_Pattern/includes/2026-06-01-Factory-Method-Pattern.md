@@ -5,6 +5,7 @@ categories: [设计模式, 创建型模式]
 tags: [设计模式, 创建型模式, 工厂方法模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 工厂方法模式（Factory Method Pattern）

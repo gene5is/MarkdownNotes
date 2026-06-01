@@ -5,6 +5,7 @@ categories: [设计模式]
 tags: [设计模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 设计模式

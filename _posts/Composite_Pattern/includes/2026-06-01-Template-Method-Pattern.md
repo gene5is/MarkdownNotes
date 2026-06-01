@@ -5,6 +5,7 @@ categories: [设计模式, 行为型模式]
 tags: [设计模式, 行为型模式, 模板方法模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 模板方法模式（Template Method Pattern）

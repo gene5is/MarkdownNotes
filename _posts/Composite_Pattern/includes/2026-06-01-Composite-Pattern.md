@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 组合模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 组合模式（Composite Pattern）

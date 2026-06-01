@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 代理模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 代理模式（Proxy Pattern）

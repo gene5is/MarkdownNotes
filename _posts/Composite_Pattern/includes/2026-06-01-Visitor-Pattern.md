@@ -5,6 +5,7 @@ categories: [设计模式, 行为型模式]
 tags: [设计模式, 行为型模式, 访问者模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 访问者模式（Visitor Pattern）

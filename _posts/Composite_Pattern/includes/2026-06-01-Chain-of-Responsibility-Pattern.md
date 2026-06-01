@@ -5,6 +5,7 @@ categories: [设计模式, 行为型模式]
 tags: [设计模式, 行为型模式, 责任链模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 责任链模式（Chain of Responsibility Pattern）

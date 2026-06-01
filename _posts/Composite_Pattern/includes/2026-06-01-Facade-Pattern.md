@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 外观模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 外观模式（Facade Pattern）

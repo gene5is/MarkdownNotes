@@ -5,6 +5,7 @@ categories: [设计模式, 创建型模式]
 tags: [设计模式, 创建型模式, 抽象工厂模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 抽象工厂模式（Abstract Factory Pattern）

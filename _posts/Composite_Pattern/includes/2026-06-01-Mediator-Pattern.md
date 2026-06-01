@@ -5,6 +5,7 @@ categories: [设计模式, 行为型模式]
 tags: [设计模式, 行为型模式, 中介者模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 中介者模式（Mediator Pattern）

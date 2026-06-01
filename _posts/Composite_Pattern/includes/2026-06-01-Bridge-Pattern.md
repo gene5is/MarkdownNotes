@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 桥接模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 桥接模式（Bridge Pattern）

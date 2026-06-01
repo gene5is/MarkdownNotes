@@ -5,6 +5,7 @@ categories: [设计模式, 行为型模式]
 tags: [设计模式, 行为型模式, 状态模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 状态模式（State Pattern）

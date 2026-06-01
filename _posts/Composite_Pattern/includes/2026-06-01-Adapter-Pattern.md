@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 适配器模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 适配器模式（Adapter Pattern）

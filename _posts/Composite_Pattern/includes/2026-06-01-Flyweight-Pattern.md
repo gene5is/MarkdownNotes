@@ -5,6 +5,7 @@ categories: [设计模式, 结构型模式]
 tags: [设计模式, 结构型模式, 享元模式]
 author: wjj
 toc: true
+mermaid: true
 ---
 
 # 享元模式（Flyweight Pattern）
