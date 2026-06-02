@@ -284,10 +284,11 @@ $$
 令
 
 $$
-\begin{aligned}
-F_n = F(n\omega) = \frac{1}{2}(a_n-jb_n) = \frac{1}{T}\int_{t_0}^{t_0+T}f(t)e^{-jn\omega t}dt \\
+F_n = F(n\omega) = \frac{1}{2}(a_n-jb_n) = \frac{1}{T}\int_{t_0}^{t_0+T}f(t)e^{-jn\omega t}dt
+$$
+
+$$
 F_{-n} = F(-n\omega) = \frac{1}{2}(a_n+jb_n)
-\end{aligned}
 $$
 
 有
