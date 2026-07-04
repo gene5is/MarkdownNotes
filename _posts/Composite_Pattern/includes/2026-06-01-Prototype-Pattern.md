@@ -73,76 +73,64 @@ ConcretePrototype (具体原型)
 ## Java 实现
 
 ### 浅拷贝
+只复制对象本身和它内部的基本数据类型（如 int, double）或包装类。对于内部的引用对象（如 List, 自定义类），它只复制引用地址，新旧对象依然指向同一个内存实例。修改新对象的内部引用对象，旧对象也会跟着改变。
 
 ```java
-public class Prototype implements Cloneable {
+// 1. 必须实现 Cloneable 接口，否则调用 clone() 会抛出 CloneNotSupportedException
+public class ConcretePrototype implements Cloneable {
     private String name;
-    private int value;
-    private ArrayList<String> list;
+    private List<String> hobbies = new ArrayList<>(); // 引用对象
 
-    public Prototype(String name, int value) {
-        this.name = name;
-        this.value = value;
-        this.list = new ArrayList<>();
-    }
+    public ConcretePrototype(String name) { this.name = name; }
 
-    public void addItem(String item) {
-        list.add(item);
-    }
+    // 省略 getter/setter
 
     @Override
-    protected Prototype clone() throws CloneNotSupportedException {
-        return (Prototype) super.clone();
-    }
-
-    @Override
-    public String toString() {
-        return "Prototype{name='" + name + "', value=" + value + ", list=" + list + '}';
+    public ConcretePrototype clone() {
+        try {
+            // super.clone() 默认是浅克隆
+            return (ConcretePrototype) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
 
-public class PrototypeDemo {
-    public static void main(String[] args) throws CloneNotSupportedException {
-        Prototype original = new Prototype("original", 1);
-        original.addItem("item1");
-
-        Prototype cloned = original.clone();
-        cloned.addItem("item2");
-
-        System.out.println("Original: " + original);
-        System.out.println("Cloned: " + cloned);
-    }
-}
 ```
 
 ### 深拷贝
 
+不仅复制对象本身，连同它内部所有引用的对象也一起递归复制一份全新的。新旧对象在内存中完全独立。
+
 ```java
-public class DeepPrototype implements Cloneable {
+import java.io.*;
+
+// 必须实现 Serializable 接口
+public class DeepPrototype implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String name;
-    private ArrayList<String> list;
+    public InnerObject inner; // 嵌套的引用对象（也必须实现 Serializable）
 
-    public DeepPrototype(String name) {
-        this.name = name;
-        this.list = new ArrayList<>();
-    }
+    // 利用二进制流深克隆对象
+    public DeepPrototype deepClone() {
+        try {
+            // 1. 将对象写入内存流
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
 
-    public void addItem(String item) {
-        list.add(item);
-    }
-
-    @Override
-    protected DeepPrototype clone() throws CloneNotSupportedException {
-        DeepPrototype cloned = (DeepPrototype) super.clone();
-        cloned.list = new ArrayList<>(this.list);
-        return cloned;
-    }
-
-    @Override
-    public String toString() {
-        return "DeepPrototype{name='" + name + "', list=" + list + '}';
+            // 2. 从内存流读出新对象
+            ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bis);
+            return (DeepPrototype) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
+
 ```
 
 ### 拷贝构造函数
