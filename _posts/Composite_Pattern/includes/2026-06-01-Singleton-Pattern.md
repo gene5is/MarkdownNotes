@@ -30,7 +30,7 @@ classDiagram
     class Singleton {
         -Singleton instance$
         -Singleton()
-        +getInstance()$ Singleton
+        +getInstance()$
         +businessMethod()
     }
     
@@ -101,32 +101,51 @@ public class Singleton {
 }
 ```
 
-### 双重检查锁定（推荐高效场景）
+### 双重检查锁懒汉式（推荐高效场景）
 
 *应用场景*：适用于占用资源大、可能用不到、需要动态传参的场景。例如数据库连接池、网络连接管理器或需要根据运行期配置文件初始化属性的单例对象。
 *代码逻辑*：采用“延迟加载”。通过两次 if (instance == null) 检查，第一次提升性能，第二次保证线程安全。配合 volatile 关键字禁止指令重排，确保多线程下获取到完全初始化好的对象。
 
 ```java
-public class Singleton {
-    // volatile 必须加，防止指令重排导致拿到未初始化完成的半成品对象
-    private static volatile Singleton instance;
+public class DclSingleton {
+    
+    // 1. volatile 关键字至关重要！防止指令重排，确保多线程下拿到完全初始化好的对象
+    private static volatile DclSingleton instance;
 
-    private Singleton() {
+    // 2. 私有化构造方法，阻止外部通过 new 显式创建实例
+    private DclSingleton() {
+        // 可选：在此处加入防止反射破坏的代码
+        if (instance != null) {
+            throw new RuntimeException("单例构造器禁止反射调用！");
+        }
     }
 
-    public static Singleton getInstance() {
-        // 第一次检查：如果已经创建，直接返回，避免不必要的synchronized同步锁开销
+    // 3. 全局唯一访问点
+    public static DclSingleton getInstance() {
+        // 第一次检查：如果实例已经创建，直接返回，避免不必要的 synchronized 加锁开销（提升性能）
         if (instance == null) {
-            synchronized (Singleton.class) {
-                // 第二次检查：防止多个线程同时通过第一次检查，排队等待
+            
+            // 局部加锁：只有在实例未创建时，才对类对象加锁（<<synchronized>>）
+            synchronized (DclSingleton.class) {
+                
+                // 第二次检查：防止线程 A 和线程 B 同时通过了第一次检查
+                // 此时 A 拿到锁创建了对象，释放锁后 B 进去，若不检查就会再次创建对象
                 if (instance == null) {
-                    instance = new Singleton();
+                    // 隐患点：new 操作在底层包含3步指令（分配内存、初始化对象、引用指向内存）
+                    // volatile 阻止了这3步指令重排，保证其他线程不会拿到“未初始化完的半成品”
+                    instance = new DclSingleton();
                 }
             }
         }
         return instance;
     }
+
+    // 4. 业务方法
+    public void businessMethod() {
+        System.out.println("懒汉式单例业务方法执行中...");
+    }
 }
+
 ```
 
 ### 静态内部类实现
