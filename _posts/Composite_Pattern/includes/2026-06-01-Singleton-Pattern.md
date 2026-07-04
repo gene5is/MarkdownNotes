@@ -28,13 +28,13 @@ mermaid: true
 ```mermaid
 classDiagram
     class Singleton {
-        -static instance: Singleton
+        -Singleton instance$
         -Singleton()
-        +static getInstance(): Singleton
+        +getInstance()$ Singleton
         +businessMethod()
     }
     
-    note right of Singleton: 私有化构造函数\n静态变量保存实例\n全局访问点
+    note right of Singleton "私有化构造函数\n静态变量保存实例\n全局访问点"
 ```
 
 ### 结构
@@ -64,13 +64,19 @@ Singleton
 
 ### 饿汉式（推荐简单场景）
 
+*应用场景*：适用于必用、占用内存小的全局配置类、工具类。如果一个单例对象在程序启动时就肯定会被用到，且创建时不需要从外部传入动态参数，优先选择此方式。
+*代码逻辑*：利用 JVM 的类加载机制，在类挂载到内存时就直接实例化对象，天然规避了多线程并发创建对象的问题。
+
 ```java
 public class Singleton {
+    //类加载时立即创建，由JVM保证线程安全
     private static final Singleton instance = new Singleton();
 
+    // 私有方法
     private Singleton() {
     }
 
+    // 全局唯一访问点
     public static Singleton getInstance() {
         return instance;
     }
@@ -97,16 +103,22 @@ public class Singleton {
 
 ### 双重检查锁定（推荐高效场景）
 
+*应用场景*：适用于占用资源大、可能用不到、需要动态传参的场景。例如数据库连接池、网络连接管理器或需要根据运行期配置文件初始化属性的单例对象。
+*代码逻辑*：采用“延迟加载”。通过两次 if (instance == null) 检查，第一次提升性能，第二次保证线程安全。配合 volatile 关键字禁止指令重排，确保多线程下获取到完全初始化好的对象。
+
 ```java
 public class Singleton {
+    // volatile 必须加，防止指令重排导致拿到未初始化完成的半成品对象
     private static volatile Singleton instance;
 
     private Singleton() {
     }
 
     public static Singleton getInstance() {
+        // 第一次检查：如果已经创建，直接返回，避免不必要的synchronized同步锁开销
         if (instance == null) {
             synchronized (Singleton.class) {
+                // 第二次检查：防止多个线程同时通过第一次检查，排队等待
                 if (instance == null) {
                     instance = new Singleton();
                 }
@@ -119,11 +131,15 @@ public class Singleton {
 
 ### 静态内部类实现
 
+*应用场景*：适用于追求高并发性能、且需要延迟加载，但不需要动态传参的框架级核心组件。这是开源项目（如 Spring、MyBatis）中最常见的单例写法。
+*代码逻辑*：当外部类 StaticInnerSingleton 被加载时，其静态内部类 Holder 并不会被加载。只有当第一次调用 getInstance() 方法时，JVM 才会加载 Holder 并初始化它的静态变量 INSTANCE。
+
 ```java
 public class Singleton {
     private Singleton() {
     }
 
+    // 静态内部类：只有在被调用时才会被JVM加载并初始化
     private static class SingletonHolder {
         private static final Singleton INSTANCE = new Singleton();
     }
