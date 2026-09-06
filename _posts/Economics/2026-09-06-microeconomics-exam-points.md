@@ -2,7 +2,7 @@
 title: "微观经济学考点提炼（武大低空技术与经济）"
 date: 2026-09-06 00:00:00 +0800
 categories: [经济学]
-tags: [微观经济学, 考研, 低空技术与经济, 武汉大学]
+tags: [微观经济学]
 author: wjj
 toc: true
 math: true
